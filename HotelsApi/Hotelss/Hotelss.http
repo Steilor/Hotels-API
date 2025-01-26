@@ -1,0 +1,19 @@
+@Hotelss_HostAddress = https://localhost:7262
+
+GET {{Hotelss_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+POST {{Hotelss_HostAddress}}/weatherforecast/generate?numResults=1
+Content-Type: application/json
+
+{
+    
+     "maxTemp": 20,
+     "minTemp": 7
+}
+
+
+
+###

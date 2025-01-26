@@ -1,0 +1,9 @@
+﻿@Hotelss.API_HostAddress = https://localhost:7262
+
+GET {{Hotelss.API_HostAddress}}/api/hotels
+
+###
+
+GET {{Hotelss.API_HostAddress}}/api/hotels/2
+
+###
