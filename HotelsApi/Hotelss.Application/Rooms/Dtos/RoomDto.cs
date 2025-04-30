@@ -11,7 +11,9 @@ namespace Hotelss.Application.Rooms.Dtos
         public int HotelId { get; set; }
         public int? Beds { get; set; }
 
-        public static RoomDto FromEntity(Room room)
+
+        //Cambiado por el AutoMapper, el Mapeo automatico
+        /*public static RoomDto FromEntity(Room room)
         {
             if (room == null) return null;
             return new RoomDto()
@@ -24,6 +26,7 @@ namespace Hotelss.Application.Rooms.Dtos
                 Beds = room.Beds,
             };
         }
+        */
     }
 
    

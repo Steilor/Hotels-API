@@ -20,24 +20,5 @@ namespace Hotelss.Application.Hotels.Dtos
         public string? PostalCode { get; set; }
         public List<RoomDto> Rooms { get; set; } = [];
 
-        public static HotelsDto? FromEntity(Hotel? hotel)
-        {
-            if (hotel == null) return null;
-            return new HotelsDto()
-            {
-
-                Id = hotel.Id,
-                Nombre = hotel.Nombre,
-                Description = hotel.Description,
-                Category = hotel.Category,
-                IsAvailable = hotel.IsAvailable,
-                City = hotel.Address?.City,
-                Street = hotel.Address?.Street,
-                PostalCode = hotel.Address?.PostalCode,
-                Rooms = hotel.Rooms.Select(RoomDto.FromEntity).ToList(),
-
-
-            };
-        }
     }
 }

@@ -7,5 +7,6 @@ namespace Hotelss.Application.Hotels
     {
         Task<IEnumerable<HotelsDto>> GetAllHotels();
         Task<HotelsDto?> GetHotelsById(int id);
+        Task<Hotel?> AddHotel(Hotel hotel);
     }
 }

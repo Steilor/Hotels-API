@@ -1,4 +1,5 @@
 ﻿using Hotelss.Application.Hotels;
+using Hotelss.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hotelss.API.Controllers
@@ -23,5 +24,14 @@ namespace Hotelss.API.Controllers
                 return NotFound();
             return Ok(hotel);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateHotel(Hotel hotel)
+        {
+            if (hotel == null)
+                return BadRequest();
+            var response = await hotelsService.AddHotel(hotel);
+        }
+
     }
 }
