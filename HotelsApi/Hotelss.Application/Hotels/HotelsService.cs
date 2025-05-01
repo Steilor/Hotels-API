@@ -33,5 +33,12 @@ namespace Hotelss.Application.Hotels
             return hotelDto;
 
         }
+
+        public async Task<CreateHotelDto?> CreateHotel(CreateHotelDto createHotelDto)
+        {
+            logger.LogInformation("Creating a Hotel");
+            var response = await hotelsRepository.CreateHotelAsync(createHotelDto);  
+
+        }
     }
 }

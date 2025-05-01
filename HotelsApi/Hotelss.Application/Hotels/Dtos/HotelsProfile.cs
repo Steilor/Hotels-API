@@ -6,7 +6,17 @@ namespace Hotelss.Application.Hotels.Dtos
     public class HotelsProfile : Profile
     {
         public HotelsProfile()
-        { 
+        {
+            CreateMap<CreateHotelDto, Hotel>()
+                .ForMember(d => d.Address, opt => opt.MapFrom(
+                    src => new Address
+                    {
+                        City = src.City,
+                        Street = src.Street,
+                        PostalCode = src.PostalCode,
+                    }));
+            
+                
             CreateMap<Hotel, HotelsDto>()
                 .ForMember(d => d.City, opt =>
                     opt.MapFrom(src => src.Address == null ? null : src.Address.City))

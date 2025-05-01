@@ -6,5 +6,7 @@ namespace Hotelss.Domain.Repositories
     {
         Task<IEnumerable<Hotel>> GetAllAsync();
         Task<Hotel?> GetByIdAsync(int id);
+
+        Task<Hotel> CreateHotelDtoAsync(Hotel hotel);
     }
 }
