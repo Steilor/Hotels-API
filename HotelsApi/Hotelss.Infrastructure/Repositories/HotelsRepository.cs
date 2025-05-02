@@ -20,5 +20,12 @@ namespace Hotelss.Infrastructure.Repositories
                 .FirstOrDefaultAsync(c=> c.Id == id);
             return hotel;
         }
+
+        public async Task<int> CreateHotelAsync(Hotel hotel)
+        {
+            dbContext.Hotels.Add(hotel);
+            await dbContext.SaveChangesAsync();
+            return hotel.Id;
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace Hotelss.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetHotel(int id)
+        public async Task<IActionResult> GetById(int id)
         {
            var hotel = await hotelsService.GetHotelsById(id);
 
@@ -29,9 +29,9 @@ namespace Hotelss.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateHotel([FromBody] CreateHotelDto createHotelDto)
         {
-            if (createHotelDto == null)
-                return BadRequest();
-            var response = await hotelsService.AddHotel(createHotelDto);
+            int id = await hotelsService.CreateHotel(createHotelDto);
+
+            return CreatedAtAction(nameof(GetById), new {id}, null);
         }
 
     }

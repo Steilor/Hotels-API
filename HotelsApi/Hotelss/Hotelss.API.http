@@ -4,6 +4,20 @@ GET {{Hotelss.API_HostAddress}}/api/hotels
 
 ###
 
-GET {{Hotelss.API_HostAddress}}/api/hotels/2
+GET {{Hotelss.API_HostAddress}}/api/hotels/1
 
 ###
+
+POST  {{Hotelss.API_HostAddress}}/api/hotels
+
+{
+   "Nombre": "Hotel Marbella",
+   "Description": "Hotel 4 estrellas a la orilla del malecon.", 
+   "Category": "4 estrellas",
+   "IsAvailable": true, 
+   "ContactEmail": "hotelmarbella@gamil.com", 
+   "ContactNumber": "829-354-5345",
+   "City": "Samana", 
+   "Street": "Calle huerta portal 27", 
+   "PostalCode": "102153"   
+}
