@@ -9,6 +9,7 @@ GET {{Hotelss.API_HostAddress}}/api/hotels/1
 ###
 
 POST  {{Hotelss.API_HostAddress}}/api/hotels
+Content-Type: application/json
 
 {
    "Nombre": "Hotel Marbella",
