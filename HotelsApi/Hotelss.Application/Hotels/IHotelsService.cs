@@ -1,12 +1,10 @@
 ﻿using Hotelss.Application.Hotels.Dtos;
-using Hotelss.Domain.Entities;
 
-namespace Hotelss.Application.Hotels
+namespace Hotelss.Application.Hotels;
+
+public interface IHotelsService
 {
-    public interface IHotelsService
-    {
-        Task<IEnumerable<HotelsDto>> GetAllHotels();
-        Task<HotelsDto?> GetHotelsById(int id);
-        Task<int> CreateHotel(CreateHotelDto hotel);
-    }
+    Task<IEnumerable<HotelsDto>> GetAllHotels();
+    Task<HotelsDto?> GetHotelsById(int id);
+    Task<int> CreateHotel(CreateHotelDto hotel);
 }

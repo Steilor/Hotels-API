@@ -4,7 +4,7 @@ GET {{Hotelss.API_HostAddress}}/api/hotels
 
 ###
 
-GET {{Hotelss.API_HostAddress}}/api/hotels/1
+GET {{Hotelss.API_HostAddress}}/api/hotels/5
 
 ###
 
@@ -12,13 +12,13 @@ POST  {{Hotelss.API_HostAddress}}/api/hotels
 Content-Type: application/json
 
 {
-   "Nombre": "Hotel Marbella",
-   "Description": "Hotel 4 estrellas a la orilla del malecon.", 
-   "Category": "4 estrellas",
-   "IsAvailable": true, 
-   "ContactEmail": "hotelmarbella@gamil.com", 
-   "ContactNumber": "829-354-5345",
-   "City": "Samana", 
-   "Street": "Calle huerta portal 27", 
-   "PostalCode": "102153"   
+  "Nombre": "Hotel SanDiego",
+  "Description": "Hotel 3 estrellas en medio del monte.",
+  "Category": "3 estrellas",
+  "IsAvailable": true,
+  "ContactEmail": "contacto@hotelsandiego.com",
+  "ContactNumber": "+34 912 345 678",
+  "City": "Madrid",
+  "Street": "Calle de la Playa 123",
+  "PostalCode": "28-001" 
 }
