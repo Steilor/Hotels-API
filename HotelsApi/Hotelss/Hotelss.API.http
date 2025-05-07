@@ -14,7 +14,7 @@ Content-Type: application/json
 {
   "Nombre": "Hotel SanDiego",
   "Description": "Hotel 3 estrellas en medio del monte.",
-  "Category": "3 estrellas",
+  "Category": "Luxury",
   "IsAvailable": true,
   "ContactEmail": "contacto@hotelsandiego.com",
   "ContactNumber": "+34 912 345 678",
