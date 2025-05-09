@@ -1,13 +1,13 @@
 ﻿using FluentValidation;
 using Hotelss.Application.Hotels.Dtos;
 
-namespace Hotelss.Application.Validators;
+namespace Hotelss.Application.Hotels.Commands.CreateHotel;
 
-public class CreateHotelDtoValidator: AbstractValidator<CreateHotelDto>
+public class CreateHotelCommandValidator: AbstractValidator<CreateHotelDto>
 {
     private readonly List<string> validCategories = ["Luxury", "Boutique", "Budget", "Resort", "Business", "All-Inclusive", 
         "Hostel", "Bed & Breakfast", "Aparthotel"];
-    public CreateHotelDtoValidator()
+    public CreateHotelCommandValidator()
     {
         RuleFor(dto => dto.Nombre)
               .Length(3, 100);

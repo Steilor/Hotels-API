@@ -1,13 +1,24 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using Hotelss.Domain.Entities;
+using Hotelss.Domain.Repositories;
+using MediatR;
+using Microsoft.Extensions.Logging;
 
-namespace Hotelss.Application.Hotels.Commands.CreateHotel
+namespace Hotelss.Application.Hotels.Commands.CreateHotel;
+
+public class CreateHotelCommandHandler (ILogger<CreateHotelCommandHandler> logger,
+    IMapper mapper,
+    IHotelsRepository hotelsRepository) : IRequestHandler<CreateHotelCommand, int>
 {
-    public class CreateHotelCommandHandler : IRequestHandler<CreateHotelCommand, int>
+    public async Task<int> Handle(CreateHotelCommand request, CancellationToken cancellationToken)
     {
-        public Task<int> Handle(CreateHotelCommand request, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
+        logger.LogInformation("Creating a Hotel");
+
+        var hotel = mapper.Map<Hotel>(request);
+
+        int id = await hotelsRepository.CreateHotelAsync(hotel);
+
+
+        return id;
     }
 }
- 

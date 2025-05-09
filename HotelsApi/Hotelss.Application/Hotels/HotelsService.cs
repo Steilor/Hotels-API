@@ -34,17 +34,5 @@ namespace Hotelss.Application.Hotels
 
         }
 
-        public async Task<int> CreateHotel(CreateHotelDto createHotelDto)
-        {
-            logger.LogInformation("Creating a Hotel");
-
-            var hotel = mapper.Map<Hotel>(createHotelDto);
-
-            int id = await hotelsRepository.CreateHotelAsync(hotel);
-
-
-            return id;
-
-        }
     }
 }
