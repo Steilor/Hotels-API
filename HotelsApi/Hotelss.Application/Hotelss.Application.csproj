@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Hotelss.Domain\Hotelss.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
 </Project>

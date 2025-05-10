@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hotelss.Application.Hotels.Dtos;
+using MediatR;
 
-namespace Hotelss.Application.Hotels.Queries.GetAllHotels
+namespace Hotelss.Application.Hotels.Queries.GetAllHotels;
+
+public class GetAllHotelsQuery : IRequest<IEnumerable<HotelsDto>>
 {
-    internal class GetAllHotelsQuery
-    {
-    }
+
 }

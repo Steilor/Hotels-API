@@ -16,7 +16,7 @@ public class CreateHotelCommandHandler (ILogger<CreateHotelCommandHandler> logge
 
         var hotel = mapper.Map<Hotel>(request);
 
-        int id = await hotelsRepository.CreateHotelAsync(hotel);
+        int id = await hotelsRepository.CreateHotelAsync(hotel); 
 
 
         return id;
