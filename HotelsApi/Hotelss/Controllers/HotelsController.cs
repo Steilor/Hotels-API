@@ -38,5 +38,17 @@ namespace Hotelss.API.Controllers
             return CreatedAtAction(nameof(GetById), new {id}, null);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteHotel(int id)
+        {
+            var isDeleted = await mediator.Send(new DeleteHotelCommand(id));
+
+            if (isDeleted)
+                return NoContent();
+            
+            return NotFound();  
+            
+        }
+
     }
 }

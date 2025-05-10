@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Hotelss.Application.Hotels.Dtos;
 
 namespace Hotelss.Application.Hotels.Commands.CreateHotel;
 
