@@ -4,7 +4,7 @@ GET {{Hotelss.API_HostAddress}}/api/hotels
 
 ###
 
-GET {{Hotelss.API_HostAddress}}/api/hotels/5
+GET {{Hotelss.API_HostAddress}}/api/hotels/766
 
 ###
 
@@ -12,7 +12,7 @@ POST  {{Hotelss.API_HostAddress}}/api/hotels
 Content-Type: application/json
 
 {
-  "Nombre": "Hotel SanDiego",
+  "Nombre": "Hotel Beniito",
   "Description": "Hotel 3 estrellas en medio del monte.",
   "Category": "Luxury",
   "IsAvailable": true,
@@ -20,5 +20,5 @@ Content-Type: application/json
   "ContactNumber": "+34 912 345 678",
   "City": "Madrid",
   "Street": "Calle de la Playa 123",
-  "PostalCode": "28-001" 
+  "PostalCode": "2001" 
 }

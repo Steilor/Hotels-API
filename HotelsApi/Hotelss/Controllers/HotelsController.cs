@@ -1,35 +1,39 @@
 ﻿using Hotelss.Application.Hotels;
+using Hotelss.Application.Hotels.Commands.CreateHotel;
 using Hotelss.Application.Hotels.Dtos;
+using Hotelss.Application.Hotels.Queries.GetAllHotels;
+using Hotelss.Application.Hotels.Queries.GetHotelById;
 using Hotelss.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hotelss.API.Controllers
 {
     [ApiController]
     [Route("api/hotels")]
-    public class HotelsController(IHotelsService hotelsService) : ControllerBase
+    public class HotelsController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
         public async Task<IActionResult> GetHotels()
         {
-          var hotels = await hotelsService.GetAllHotels();
+          var hotels = await mediator.Send(new GetAllHotelsQuery());
           return Ok(hotels);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-           var hotel = await hotelsService.GetHotelsById(id);
-
+            var hotel = await mediator.Send(new GetHotelByIdQuery(id));
+          
             if (hotel is null)
                 return NotFound();
             return Ok(hotel);
         }
-
+         
         [HttpPost]
-        public async Task<IActionResult> CreateHotel([FromBody] CreateHotelDto createHotelDto)
+        public async Task<IActionResult> CreateHotel(CreateHotelCommand command)
         {
-            int id = await hotelsService.CreateHotel(createHotelDto);
+            int id = await mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new {id}, null);
         }

@@ -3,6 +3,7 @@ using MediatR;
 
 namespace Hotelss.Application.Hotels.Queries.GetHotelById;
 
-public class GetHotelByIdQuery : IRequest<HotelsDto?>
+public class GetHotelByIdQuery (int id) : IRequest<HotelsDto?>
 {
+    public int Id { get;} = id;
 }

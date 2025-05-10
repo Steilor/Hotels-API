@@ -3,7 +3,7 @@ using Hotelss.Application.Hotels.Dtos;
 
 namespace Hotelss.Application.Hotels.Commands.CreateHotel;
 
-public class CreateHotelCommandValidator: AbstractValidator<CreateHotelDto>
+public class CreateHotelCommandValidator: AbstractValidator<CreateHotelCommand>
 {
     private readonly List<string> validCategories = ["Luxury", "Boutique", "Budget", "Resort", "Business", "All-Inclusive", 
         "Hostel", "Bed & Breakfast", "Aparthotel"];
