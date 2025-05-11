@@ -5,20 +5,17 @@ using Microsoft.Extensions.Logging;
 namespace Hotelss.Application.Hotels.Commands.DeleteHotel;
 
 public class DeleteHotelCommandHandler(ILogger<DeleteHotelCommandHandler> logger,
-    IHotelsRepository hotelsRepository) : IRequestHandler<DeleteHotelCommand, int>
+    IHotelsRepository hotelsRepository) : IRequestHandler<DeleteHotelCommand, bool>
 {
-    public async Task<int> Handle(DeleteHotelCommand request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(DeleteHotelCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation($"Deleting Hotel with id : {request.Id}");
         var hotel = await hotelsRepository.GetByIdAsync(request.Id);
 
-        if ( hotel == null)
-        {
+        if ( hotel == null )
+            return false;
 
-        }
-        int result = await hotelsRepository.DeleteHotelAsync(request.Id);
-
-        return result;
-
+        await hotelsRepository.Delete(hotel);
+        return true;
     }
 }

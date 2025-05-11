@@ -8,6 +8,10 @@ GET {{Hotelss.API_HostAddress}}/api/hotels/7
 
 ###
 
+DELETE {{Hotelss.API_HostAddress}}/api/hotels/6
+
+###
+
 POST  {{Hotelss.API_HostAddress}}/api/hotels
 Content-Type: application/json
 

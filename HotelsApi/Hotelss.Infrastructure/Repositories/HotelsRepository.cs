@@ -21,18 +21,17 @@ internal class HotelsRepository(HotelsDbContext dbContext) : IHotelsRepository
         return hotel;
     }
 
-    public async Task<int> CreateHotelAsync(Hotel hotel)
+    public async Task<int> Create(Hotel hotel)
     {
         dbContext.Hotels.Add(hotel);
         await dbContext.SaveChangesAsync();
         return hotel.Id;
     }
 
-    public async Task<int> DeleteHotelAsync(int id)
+    public async Task Delete(Hotel hotel)
     {
-        var entity = await dbContext.Hotels.FirstOrDefaultAsync(r => r.Id == id);
-    
-       return 0;
+         dbContext.Remove(hotel);
+        await dbContext.SaveChangesAsync();
 
     }
 }
