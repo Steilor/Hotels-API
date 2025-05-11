@@ -18,15 +18,7 @@ public class HotelsProfile : Profile
                     PostalCode = src.PostalCode,
                 }));
 
-        CreateMap<UpdateHotelCommand, Hotel>()
-            .ForMember(d => d.Id, opt =>
-                opt.MapFrom(src => src.Id))
-            .ForMember(d => d.Nombre, opt =>
-                opt.MapFrom(src => src.Nombre))
-            .ForMember(d => d.Description, opt =>
-                opt.MapFrom(src => src.Description))
-            .ForMember(d => d.IsAvailable, opt =>
-                opt.MapFrom(src => src.IsAvailable));
+        CreateMap<UpdateHotelCommand, Hotel>();
 
 
 

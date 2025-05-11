@@ -11,6 +11,6 @@ namespace Hotelss.Domain.Repositories
 
         Task Delete(Hotel hotel);
 
-        Task Update(Hotel hotel);
+        Task SaveChanges();
     }
 }

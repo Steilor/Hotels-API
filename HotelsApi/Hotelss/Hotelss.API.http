@@ -29,14 +29,13 @@ Content-Type: application/json
 
 ###
 
-PATCH {{Hotelss.API_HostAddress}}/api/hotels
+PATCH {{Hotelss.API_HostAddress}}/api/hotels/4
 Content-Type: application/json
 
 {
-  "Id": 4,
-  "Nombre": "Hotel Actualisauu",
-  "Description": "Hotel 300 estrellas en medio del monte.",
-  "IsAvailable": false
+  "Nombre": "Hotel Actualisaisimo",
+  "Description": "Hotel 3000 estrellas en medio del monte.",
+  "IsAvailable": true
 }
 
 ###

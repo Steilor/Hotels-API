@@ -15,14 +15,18 @@ public class UpdateHotelCommandHandler(ILogger<UpdateHotelCommandHandler> logger
     {
         logger.LogInformation($"Updating Hotel with id : {request.Id}");
         
-        var existEntity = await hotelsRepository.GetByIdAsync(request.Id);
-        if (existEntity == null)
+        var hotel = await hotelsRepository.GetByIdAsync(request.Id);
+        if (hotel is null)
             return false;
 
-        var entity = mapper.Map<Hotel>(request);
+        mapper.Map(request, hotel);
 
+        //hotel.Nombre = request.Nombre;
+        //hotel.Description = request.Description;
+        //hotel.IsAvailable = request.IsAvailable;
+       
+        await hotelsRepository.SaveChanges();
 
-         await hotelsRepository.Update(entity);
         return true;
        
     }

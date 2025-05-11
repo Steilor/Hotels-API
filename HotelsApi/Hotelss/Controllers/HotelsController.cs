@@ -52,12 +52,13 @@ namespace Hotelss.API.Controllers
             
         }
 
-        [HttpPatch]
-        public async Task<IActionResult> UpdateHotel(UpdateHotelCommand command)
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateHotel(int id, UpdateHotelCommand command)
         {
-            var isUpdate = await mediator.Send(command);
+            command.Id = id;
+            var isUpdated = await mediator.Send(command);
 
-            if (isUpdate)
+            if (isUpdated)
                 return NoContent();
             return NotFound();
         }

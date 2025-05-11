@@ -35,14 +35,6 @@ internal class HotelsRepository(HotelsDbContext dbContext) : IHotelsRepository
 
     }
 
-    public async Task Update(Hotel hotel)
-    {
-       var hotelToUpadate = await dbContext.Hotels.FirstOrDefaultAsync(r => r.Id == hotel.Id);
+    public Task SaveChanges() => dbContext.SaveChangesAsync();
 
-        hotelToUpadate.Nombre = hotel.Nombre;
-        hotelToUpadate.Description = hotel.Description;
-        hotelToUpadate.IsAvailable = hotel.IsAvailable;
-        await dbContext.SaveChangesAsync();
-        
-    }
 }
