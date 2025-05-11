@@ -1,6 +1,7 @@
 ﻿using Hotelss.Application.Hotels;
 using Hotelss.Application.Hotels.Commands.CreateHotel;
 using Hotelss.Application.Hotels.Commands.DeleteHotel;
+using Hotelss.Application.Hotels.Commands.UpdateHotel;
 using Hotelss.Application.Hotels.Dtos;
 using Hotelss.Application.Hotels.Queries.GetAllHotels;
 using Hotelss.Application.Hotels.Queries.GetHotelById;
@@ -50,6 +51,17 @@ namespace Hotelss.API.Controllers
             return NotFound();  
             
         }
+
+        [HttpPatch]
+        public async Task<IActionResult> UpdateHotel(UpdateHotelCommand command)
+        {
+            var isUpdate = await mediator.Send(command);
+
+            if (isUpdate)
+                return NoContent();
+            return NotFound();
+        }
+        
 
     }
 }

@@ -14,15 +14,6 @@ public class CreateHotelCommandValidator: AbstractValidator<CreateHotelCommand>
         RuleFor(dto => dto.Category)
             .Must(validCategories.Contains)
             .WithMessage("Invalid category. Please choose from the valid categories.");
-         //.Custom((value, context) =>
-         //{
-         //    var isValidCategory = validCategories.Contains(value);
-
-         //    if (!isValidCategory)
-         //    {
-         //        context.AddFailure("Category", "Invalid category. Please choose from the valid categories.");
-         //    }
-         //});
 
         RuleFor(dto => dto.ContactEmail)
             .EmailAddress()

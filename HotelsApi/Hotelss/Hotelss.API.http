@@ -8,7 +8,7 @@ GET {{Hotelss.API_HostAddress}}/api/hotels/7
 
 ###
 
-DELETE {{Hotelss.API_HostAddress}}/api/hotels/6
+DELETE {{Hotelss.API_HostAddress}}/api/hotels/5
 
 ###
 
@@ -25,6 +25,18 @@ Content-Type: application/json
   "City": "Madrid",
   "Street": "Calle de la Playa 123",
   "PostalCode": "20-001" 
+}
+
+###
+
+PATCH {{Hotelss.API_HostAddress}}/api/hotels
+Content-Type: application/json
+
+{
+  "Id": 4,
+  "Nombre": "Hotel Actualisauu",
+  "Description": "Hotel 300 estrellas en medio del monte.",
+  "IsAvailable": false
 }
 
 ###

@@ -10,5 +10,7 @@ namespace Hotelss.Domain.Repositories
         Task<int> Create(Hotel hotel);
 
         Task Delete(Hotel hotel);
+
+        Task Update(Hotel hotel);
     }
 }
