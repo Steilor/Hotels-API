@@ -8,5 +8,7 @@ namespace Hotelss.Domain.Repositories
         Task<Hotel?> GetByIdAsync(int id);
 
         Task<int> CreateHotelAsync(Hotel hotel);
+
+        Task<int> DeleteHotelAsync(int id);
     }
 }

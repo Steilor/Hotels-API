@@ -1,5 +1,6 @@
 ﻿using Hotelss.Application.Hotels;
 using Hotelss.Application.Hotels.Commands.CreateHotel;
+using Hotelss.Application.Hotels.Commands.DeleteHotel;
 using Hotelss.Application.Hotels.Dtos;
 using Hotelss.Application.Hotels.Queries.GetAllHotels;
 using Hotelss.Application.Hotels.Queries.GetHotelById;

@@ -27,4 +27,12 @@ internal class HotelsRepository(HotelsDbContext dbContext) : IHotelsRepository
         await dbContext.SaveChangesAsync();
         return hotel.Id;
     }
+
+    public async Task<int> DeleteHotelAsync(int id)
+    {
+        var entity = await dbContext.Hotels.FirstOrDefaultAsync(r => r.Id == id);
+    
+       return 0;
+
+    }
 }
