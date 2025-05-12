@@ -1,6 +1,7 @@
 using Hotelss.Application.Extensions;
 using Hotelss.Infrastructure.Extensions;
 using Hotelss.Infrastructure.Seeders;
+using Serilog;
 
 namespace Hotelss.API
 {
@@ -18,6 +19,10 @@ namespace Hotelss.API
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure(builder.Configuration);
 
+            // Serilog
+            builder.Host.UseSerilog((context, configuration) =>
+                 configuration
+                    .WriteTo.Console()); ;
 
             var app = builder.Build();
 
