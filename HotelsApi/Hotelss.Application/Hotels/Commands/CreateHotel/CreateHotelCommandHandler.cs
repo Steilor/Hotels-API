@@ -12,7 +12,7 @@ public class CreateHotelCommandHandler (ILogger<CreateHotelCommandHandler> logge
 {
     public async Task<int> Handle(CreateHotelCommand request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Creating a Hotel");
+        logger.LogInformation("Creating a new Hotel {@Request}", request);
 
         var hotel = mapper.Map<Hotel>(request);
 

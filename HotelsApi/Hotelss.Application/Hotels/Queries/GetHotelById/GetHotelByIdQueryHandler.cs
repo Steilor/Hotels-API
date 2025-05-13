@@ -12,7 +12,7 @@ public class GetHotelByIdQueryHandler(ILogger<GetHotelByIdQueryHandler> logger,
 {
     public async Task<HotelsDto?> Handle(GetHotelByIdQuery request, CancellationToken cancellationToken)
     {
-        logger.LogInformation($"Getting hotel {request.Id}");
+        logger.LogInformation("Getting hotel {HotelId}", request.Id);
         var hotel = await hotelsRepository.GetByIdAsync(request.Id);
 
         var hotelDto = mapper.Map<HotelsDto?>(hotel);

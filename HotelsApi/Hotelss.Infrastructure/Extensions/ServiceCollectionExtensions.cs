@@ -13,7 +13,9 @@ namespace Hotelss.Infrastructure.Extensions
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("HotelsDb");
-            services.AddDbContext<HotelsDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<HotelsDbContext>(options => 
+                options.UseSqlServer(connectionString)
+                    .EnableSensitiveDataLogging());
 
             services.AddScoped<IHotelSeeder, HotelSeeder>();
             services.AddScoped<IHotelsRepository, HotelsRepository>();

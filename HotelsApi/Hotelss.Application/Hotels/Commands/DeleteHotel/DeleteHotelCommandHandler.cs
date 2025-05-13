@@ -9,7 +9,7 @@ public class DeleteHotelCommandHandler(ILogger<DeleteHotelCommandHandler> logger
 {
     public async Task<bool> Handle(DeleteHotelCommand request, CancellationToken cancellationToken)
     {
-        logger.LogInformation($"Deleting Hotel with id : {request.Id}");
+        logger.LogInformation("Deleting Hotel with id : {HotelId}", request.Id);
         var hotel = await hotelsRepository.GetByIdAsync(request.Id);
 
         if ( hotel == null )

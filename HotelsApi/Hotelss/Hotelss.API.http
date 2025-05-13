@@ -16,7 +16,7 @@ POST  {{Hotelss.API_HostAddress}}/api/hotels
 Content-Type: application/json
 
 {
-  "Nombre": "Hotel uuu",
+  "Nombre": "Hotel Bubalu",
   "Description": "Hotel 3 estrellas en medio del monte.",
   "Category": "Luxury",
   "IsAvailable": true,
@@ -29,11 +29,11 @@ Content-Type: application/json
 
 ###
 
-PATCH {{Hotelss.API_HostAddress}}/api/hotels/4
+PATCH {{Hotelss.API_HostAddress}}/api/hotels/9
 Content-Type: application/json
 
 {
-  "Nombre": "Hotel Actualisaisimo",
+  "Nombre": "Hotel Bubalulu",
   "Description": "Hotel 3000 estrellas en medio del monte.",
   "IsAvailable": true
 }

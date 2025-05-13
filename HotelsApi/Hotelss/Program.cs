@@ -2,6 +2,7 @@ using Hotelss.Application.Extensions;
 using Hotelss.Infrastructure.Extensions;
 using Hotelss.Infrastructure.Seeders;
 using Serilog;
+using Serilog.Events;
 
 namespace Hotelss.API
 {
@@ -22,7 +23,10 @@ namespace Hotelss.API
             // Serilog
             builder.Host.UseSerilog((context, configuration) =>
                  configuration
-                    .WriteTo.Console()); ;
+                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+                 .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Information)
+                 .WriteTo.Console(outputTemplate: "[{Timestamp:dd-MM HH:mm:ss} {Level:u3}] |{SourceContext}| {NewLine}{Message:lj}{NewLine}{Exception}")
+                    ); 
 
             var app = builder.Build();
 
@@ -33,7 +37,8 @@ namespace Hotelss.API
             await seeder.Seed();
            
 
-            // Configure the HTTP request pipeline.
+            // Configure the HTTP request pipeline. 
+            app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
 
