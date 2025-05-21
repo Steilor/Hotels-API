@@ -10,9 +10,9 @@ namespace Hotelss.Application.Hotels.Commands.UpdateHotel;
 
 public class UpdateHotelCommandHandler(ILogger<UpdateHotelCommandHandler> logger,
     IHotelsRepository hotelsRepository,
-    IMapper mapper) : IRequestHandler<UpdateHotelCommand, bool>
+    IMapper mapper) : IRequestHandler<UpdateHotelCommand>
 {
-    public async Task<bool> Handle(UpdateHotelCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdateHotelCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Updating Hotel with id : {HotelId} with {@UpdatedHotel}", request.Id, request);
         
@@ -28,7 +28,6 @@ public class UpdateHotelCommandHandler(ILogger<UpdateHotelCommandHandler> logger
        
         await hotelsRepository.SaveChanges();
 
-        return true;
        
     }
 }

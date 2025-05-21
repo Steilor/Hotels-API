@@ -6,9 +6,9 @@ using Microsoft.Extensions.Logging;
 namespace Hotelss.Application.Hotels.Commands.DeleteHotel;
 
 public class DeleteHotelCommandHandler(ILogger<DeleteHotelCommandHandler> logger,
-    IHotelsRepository hotelsRepository) : IRequestHandler<DeleteHotelCommand, bool>
+    IHotelsRepository hotelsRepository) : IRequestHandler<DeleteHotelCommand>
 {
-    public async Task<bool> Handle(DeleteHotelCommand request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteHotelCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Deleting Hotel with id : {HotelId}", request.Id);
         var hotel = await hotelsRepository.GetByIdAsync(request.Id);
@@ -17,6 +17,5 @@ public class DeleteHotelCommandHandler(ILogger<DeleteHotelCommandHandler> logger
             throw new NotFoundException($"Hotel with {request.Id} doesn't exist");
 
         await hotelsRepository.Delete(hotel);
-        return true;
     }
 }
