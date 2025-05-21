@@ -1,11 +1,9 @@
-﻿using Hotelss.Application.Hotels;
-using Hotelss.Application.Hotels.Commands.CreateHotel;
+﻿using Hotelss.Application.Hotels.Commands.CreateHotel;
 using Hotelss.Application.Hotels.Commands.DeleteHotel;
 using Hotelss.Application.Hotels.Commands.UpdateHotel;
 using Hotelss.Application.Hotels.Dtos;
 using Hotelss.Application.Hotels.Queries.GetAllHotels;
 using Hotelss.Application.Hotels.Queries.GetHotelById;
-using Hotelss.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,14 +14,14 @@ namespace Hotelss.API.Controllers
     public class HotelsController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetHotels()
+        public async Task<ActionResult<IEnumerable<HotelsDto>>> GetHotels()
         {
           var hotels = await mediator.Send(new GetAllHotelsQuery());
           return Ok(hotels);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<ActionResult<HotelsDto?>> GetById(int id) 
         {
             var hotel = await mediator.Send(new GetHotelByIdQuery(id));
           
@@ -40,7 +38,23 @@ namespace Hotelss.API.Controllers
             return CreatedAtAction(nameof(GetById), new {id}, null);
         }
 
+
+        [HttpPatch("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateHotel(int id, UpdateHotelCommand command)
+        {
+            command.Id = id;
+            var isUpdated = await mediator.Send(command);
+
+            if (isUpdated)
+                return NoContent();
+            return NotFound();
+        }
+
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteHotel(int id)
         {
             var isDeleted = await mediator.Send(new DeleteHotelCommand(id));
@@ -50,17 +64,6 @@ namespace Hotelss.API.Controllers
             
             return NotFound();  
             
-        }
-
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> UpdateHotel(int id, UpdateHotelCommand command)
-        {
-            command.Id = id;
-            var isUpdated = await mediator.Send(command);
-
-            if (isUpdated)
-                return NoContent();
-            return NotFound();
         }
         
 

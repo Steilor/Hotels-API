@@ -1,3 +1,4 @@
+using Hotelss.API.Middlewares;
 using Hotelss.Application.Extensions;
 using Hotelss.Infrastructure.Extensions;
 using Hotelss.Infrastructure.Seeders;
@@ -17,6 +18,11 @@ namespace Hotelss.API
 
             builder.Services.AddControllers();
 
+            //Add Swagger
+            builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<ErrorHandlingMiddleware>();
+
             //Send configuration to the extension Method for the configuration of the DbContext
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure(builder.Configuration);
@@ -35,8 +41,17 @@ namespace Hotelss.API
             await seeder.Seed();
            
 
-            // Configure the HTTP request pipeline. 
+            // Configure the HTTP request pipeline.
+            app.UseMiddleware<ErrorHandlingMiddleware>();
+
             app.UseSerilogRequestLogging();
+
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+
+            }
 
             app.UseHttpsRedirection();
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Hotelss.Domain.Entities;
+using Hotelss.Domain.Exceptions;
 using Hotelss.Domain.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -17,7 +18,7 @@ public class UpdateHotelCommandHandler(ILogger<UpdateHotelCommandHandler> logger
         
         var hotel = await hotelsRepository.GetByIdAsync(request.Id);
         if (hotel is null)
-            return false;
+            throw new NotFoundException($"Hotel with {request.Id} doesn't exist");
 
         mapper.Map(request, hotel);
 

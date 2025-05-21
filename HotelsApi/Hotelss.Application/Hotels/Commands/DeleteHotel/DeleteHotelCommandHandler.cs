@@ -1,4 +1,5 @@
-﻿using Hotelss.Domain.Repositories;
+﻿using Hotelss.Domain.Exceptions;
+using Hotelss.Domain.Repositories;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -13,7 +14,7 @@ public class DeleteHotelCommandHandler(ILogger<DeleteHotelCommandHandler> logger
         var hotel = await hotelsRepository.GetByIdAsync(request.Id);
 
         if ( hotel == null )
-            return false;
+            throw new NotFoundException($"Hotel with {request.Id} doesn't exist");
 
         await hotelsRepository.Delete(hotel);
         return true;
