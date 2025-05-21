@@ -18,7 +18,7 @@ public class UpdateHotelCommandHandler(ILogger<UpdateHotelCommandHandler> logger
         
         var hotel = await hotelsRepository.GetByIdAsync(request.Id);
         if (hotel is null)
-            throw new NotFoundException($"Hotel with {request.Id} doesn't exist");
+            throw new NotFoundException(nameof(Hotel), request.Id.ToString());
 
         mapper.Map(request, hotel);
 

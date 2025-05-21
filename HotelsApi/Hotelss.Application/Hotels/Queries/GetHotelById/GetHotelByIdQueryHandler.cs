@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Hotelss.Application.Hotels.Dtos;
+using Hotelss.Domain.Entities;
 using Hotelss.Domain.Exceptions;
 using Hotelss.Domain.Repositories;
 using MediatR;
@@ -15,7 +16,7 @@ public class GetHotelByIdQueryHandler(ILogger<GetHotelByIdQueryHandler> logger,
     {
         logger.LogInformation("Getting hotel {HotelId}", request.Id);
         var hotel = await hotelsRepository.GetByIdAsync(request.Id)
-            ?? throw new NotFoundException($"Hotel with {request.Id} doesn't exist"); 
+            ?? throw new NotFoundException(nameof(Hotel), request.Id.ToString());
 
         var hotelDto = mapper.Map<HotelsDto>(hotel);
         //var hotelDto = HotelsDto.FromEntity(hotel);
