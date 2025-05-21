@@ -17,7 +17,7 @@ public class GetHotelByIdQueryHandler(ILogger<GetHotelByIdQueryHandler> logger,
         var hotel = await hotelsRepository.GetByIdAsync(request.Id)
             ?? throw new NotFoundException($"Hotel with {request.Id} doesn't exist"); 
 
-        var hotelDto = mapper.Map<HotelsDto?>(hotel);
+        var hotelDto = mapper.Map<HotelsDto>(hotel);
         //var hotelDto = HotelsDto.FromEntity(hotel);
 
         return hotelDto;
