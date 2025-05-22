@@ -1,18 +1,14 @@
 ﻿using AutoMapper;
+using Hotelss.Application.Rooms.Commands.CreateRoom;
 using Hotelss.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Hotelss.Application.Rooms.Dtos
+namespace Hotelss.Application.Rooms.Dtos;
+
+public class RoomsProfile : Profile
 {
-    public class RoomsProfile : Profile
+    public RoomsProfile()
     {
-        public RoomsProfile()
-        {
-            CreateMap<Room, RoomDto>();
-        }
+        CreateMap<CreateRoomCommand, Room>();
+        CreateMap<Room, RoomDto>();
     }
 }

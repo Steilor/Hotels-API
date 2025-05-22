@@ -39,3 +39,16 @@ Content-Type: application/json
 }
 
 ###
+
+POST {{Hotelss.API_HostAddress}}/api/hotel/4/rooms
+Content-Type: application/json
+
+{
+  "Name": "2A",
+  "Description": "Piso con acceso especial, buena iluminacion.",
+  "Price": 80,
+  "Beds": 6 
+   
+}
+
+###
