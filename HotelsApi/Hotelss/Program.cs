@@ -42,8 +42,8 @@ public class Program
 
         // Configure the HTTP request pipeline.
         app.UseMiddleware<ErrorHandlingMiddleware>();
-
         app.UseMiddleware <RequesttTimeLoggingMiddleware>();
+
         app.UseSerilogRequestLogging();
 
         if (app.Environment.IsDevelopment())
