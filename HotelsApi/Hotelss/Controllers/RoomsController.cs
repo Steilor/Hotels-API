@@ -1,5 +1,6 @@
 ﻿using Hotelss.Application.Rooms.Commands.CreateRoom;
 using Hotelss.Application.Rooms.Dtos;
+using Hotelss.Application.Rooms.Queries.GetAllRooms;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,10 +18,10 @@ public class RoomsController(IMediator mediator) : Controller
         return Created();
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<RoomDto?>>> GetAllRooms()
+    [HttpGet("{id}")]
+    public async Task<ActionResult<IEnumerable<RoomDto?>>> GetAllRooms(int hotelId)
     {
-        var rooms = await mediator.Send(new GetAllRoomsQuery());
+        var rooms = await mediator.Send(new GetAllRoomsQuery(hotelId));
         return Ok(rooms);
     }
 }
