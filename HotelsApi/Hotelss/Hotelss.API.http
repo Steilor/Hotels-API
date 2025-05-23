@@ -53,7 +53,13 @@ Content-Type: application/json
 
 ###
 
-@hotelId=4
-GET {{Hotelss.API_HostAddress}}/api/hotel/{{hotelId}}/rooms/{id}
+
+@hotelId=0
+GET {{Hotelss.API_HostAddress}}/api/hotel/{{hotelId}}/rooms
+
+###
+
+@roomId=0
+GET {{Hotelss.API_HostAddress}}/api/hotel/{{hotelId}}/rooms/{{roomId}}
 
 ###
