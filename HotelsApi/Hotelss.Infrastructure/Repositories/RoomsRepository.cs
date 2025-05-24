@@ -14,6 +14,14 @@ internal class RoomsRepository(HotelsDbContext dbContext) : IRoomsRepository
         return entity.Id;
     }
 
+    public async Task Delete(IEnumerable<Room> entities)
+    {
+       dbContext.Rooms.RemoveRange(entities);
+        await dbContext.SaveChangesAsync();
+    }
+
+
+
 
     //public async Task<Room> GetByIdAsync(int hotelId, int roomId)
     //{

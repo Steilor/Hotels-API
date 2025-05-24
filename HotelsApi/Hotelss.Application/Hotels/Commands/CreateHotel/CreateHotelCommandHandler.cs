@@ -18,7 +18,6 @@ public class CreateHotelCommandHandler (ILogger<CreateHotelCommandHandler> logge
 
         int id = await hotelsRepository.Create(hotel); 
 
-
         return id;
     }
 }

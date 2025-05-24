@@ -1,4 +1,5 @@
 ﻿using Hotelss.Application.Rooms.Commands.CreateRoom;
+using Hotelss.Application.Rooms.Commands.DeleteRooms;
 using Hotelss.Application.Rooms.Dtos;
 using Hotelss.Application.Rooms.Queries.GetAllRooms;
 using Hotelss.Application.Rooms.Queries.GetRoomById;
@@ -32,4 +33,13 @@ public class RoomsController(IMediator mediator) : Controller
         var room = await mediator.Send(new GetRoomByIdForHotelQuery(hotelId, roomId));
         return Ok(room);
     }
+
+    [HttpDelete()]
+    public async Task<ActionResult> DeleteRoomsForHotel([FromRoute] int hotelId)
+    {
+       await mediator.Send(new DeleteRoomsForHotelCommand(hotelId));
+
+        return NoContent();
+    }
 }
+ 

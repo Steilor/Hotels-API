@@ -65,3 +65,7 @@ GET {{Hotelss.API_HostAddress}}/api/hotel/4/rooms
 GET {{Hotelss.API_HostAddress}}/api/hotel/4/rooms/{{roomId}}
 
 ###
+
+DELETE {{Hotelss.API_HostAddress}}/api/hotel/4/rooms
+
+###
