@@ -1,5 +1,6 @@
 using Hotelss.API.Middlewares;
 using Hotelss.Application.Extensions;
+using Hotelss.Domain.Entities;
 using Hotelss.Infrastructure.Extensions;
 using Hotelss.Infrastructure.Seeders;
 using Serilog;
@@ -54,6 +55,8 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+
+        app.MapIdentityApi<User>();
 
         app.UseAuthorization();
 

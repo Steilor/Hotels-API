@@ -1,4 +1,5 @@
-﻿using Hotelss.Domain.Repositories;
+﻿using Hotelss.Domain.Entities;
+using Hotelss.Domain.Repositories;
 using Hotelss.Infrastructure.Persistence;
 using Hotelss.Infrastructure.Repositories;
 using Hotelss.Infrastructure.Seeders;
@@ -16,6 +17,9 @@ namespace Hotelss.Infrastructure.Extensions
             services.AddDbContext<HotelsDbContext>(options => 
                 options.UseSqlServer(connectionString)
                     .EnableSensitiveDataLogging());
+
+            services.AddIdentityApiEndpoints<User>()
+                .AddEntityFrameworkStores<HotelsDbContext>();
 
             services.AddScoped<IHotelSeeder, HotelSeeder>();
             services.AddScoped<IHotelsRepository, HotelsRepository>();
