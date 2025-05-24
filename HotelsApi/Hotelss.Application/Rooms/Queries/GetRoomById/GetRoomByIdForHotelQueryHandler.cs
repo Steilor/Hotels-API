@@ -10,7 +10,6 @@ namespace Hotelss.Application.Rooms.Queries.GetRoomById;
 
 public class GetRoomByIdForHotelQueryHandler(ILogger<GetRoomByIdForHotelQueryHandler> logger,
     IHotelsRepository hotelsRepository,
-    IRoomsRepository roomsRepository,
     IMapper mapper) : IRequestHandler<GetRoomByIdForHotelQuery, RoomDto>
 {
     public async Task<RoomDto> Handle(GetRoomByIdForHotelQuery request, CancellationToken cancellationToken)

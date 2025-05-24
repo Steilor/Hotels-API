@@ -15,9 +15,9 @@ internal class RoomsRepository(HotelsDbContext dbContext) : IRoomsRepository
     }
 
 
-    public async Task<Room> GetByIdAsync(int hotelId, int roomId)
-    {
-        var room = await dbContext.Rooms.Where(d => d.HotelId==hotelId).FirstOrDefaultAsync(d=> d.Id ==roomId);
-        return room;
-    }
+    //public async Task<Room> GetByIdAsync(int hotelId, int roomId)
+    //{
+    //    var room = await dbContext.Rooms.Where(d => d.HotelId==hotelId).FirstOrDefaultAsync(d=> d.Id ==roomId);
+    //    return room;
+    //}
 }

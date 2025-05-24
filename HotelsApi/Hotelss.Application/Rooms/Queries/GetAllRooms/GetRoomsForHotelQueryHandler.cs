@@ -4,7 +4,6 @@ using Hotelss.Domain.Entities;
 using Hotelss.Domain.Exceptions;
 using Hotelss.Domain.Repositories;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Logging;
 
 namespace Hotelss.Application.Rooms.Queries.GetAllRooms;
