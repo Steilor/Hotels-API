@@ -14,13 +14,6 @@ internal class RoomsRepository(HotelsDbContext dbContext) : IRoomsRepository
         return entity.Id;
     }
 
-    public async Task<IEnumerable<Room>> GetAllAsync(int hotelId)
-    {
-       var rooms = await dbContext.Rooms.Where(r => r.HotelId == hotelId).ToListAsync();
-
-        return rooms;
-            
-    }
 
     public async Task<Room> GetByIdAsync(int hotelId, int roomId)
     {

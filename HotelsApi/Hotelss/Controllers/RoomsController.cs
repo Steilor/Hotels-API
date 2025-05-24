@@ -20,16 +20,16 @@ public class RoomsController(IMediator mediator) : Controller
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<RoomDto?>>> GetAllRooms(int hotelId)
+    public async Task<ActionResult<IEnumerable<RoomDto?>>> GetAllForHotell([FromRoute] int hotelId)
     {
-        var rooms = await mediator.Send(new GetAllRoomsQuery(hotelId));
+        var rooms = await mediator.Send(new GetRoomsForHotelQuery(hotelId));
         return Ok(rooms);
     }
 
     [HttpGet("{roomId}")]
-    public async Task<ActionResult<RoomDto>> GetRoomById(int hotelId, int roomId)
+    public async Task<ActionResult<RoomDto>> GetByIdForHotel(int hotelId,[FromRoute] int roomId)
     {
-        var room = await mediator.Send(new GetRoomByIdQuery(hotelId, roomId));
+        var room = await mediator.Send(new GetRoomByIdForHotelQuery(hotelId, roomId));
         return Ok(room);
     }
 }
