@@ -2,7 +2,7 @@
 
 namespace Hotelss.Application.Rooms.Commands.CreateRoom;
 
-public class CreateRoomCommand : IRequest
+public class CreateRoomCommand : IRequest<int>
 {
     public string Name { get; set; } = default!;
     public string Description { get; set; } = default!;
