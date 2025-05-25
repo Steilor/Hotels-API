@@ -5,15 +5,18 @@ using Hotelss.Application.Hotels.Dtos;
 using Hotelss.Application.Hotels.Queries.GetAllHotels;
 using Hotelss.Application.Hotels.Queries.GetHotelById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hotelss.API.Controllers;
 
 [ApiController]
 [Route("api/hotels")]
+[Authorize]
 public class HotelsController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<HotelsDto>>> GetHotels()
     {
       var hotels = await mediator.Send(new GetAllHotelsQuery());
