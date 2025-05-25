@@ -4,6 +4,7 @@ using Hotelss.Domain.Entities;
 using Hotelss.Infrastructure.Extensions;
 using Hotelss.Infrastructure.Seeders;
 using Serilog;
+using Microsoft.OpenApi.Models;
 
 namespace Hotelss.API;
 
@@ -18,7 +19,16 @@ public class Program
         builder.Services.AddControllers();
 
         //Add Swagger
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(c =>
+        {
+            c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
+            {
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer"
+            });
+        });
+
+        builder.Services.AddEndpointsApiExplorer();
 
         builder.Services.AddScoped<ErrorHandlingMiddleware>();
         builder.Services.AddScoped<RequesttTimeLoggingMiddleware>();
@@ -59,7 +69,7 @@ public class Program
         app.MapIdentityApi<User>();
 
         app.UseAuthorization();
-
+          
 
         app.MapControllers();
 
