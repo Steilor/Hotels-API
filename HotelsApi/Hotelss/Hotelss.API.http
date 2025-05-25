@@ -1,7 +1,8 @@
 ﻿@Hotelss.API_HostAddress = https://localhost:7262
+@token= CfDJ8MWGnpKvu19Pl2aYV_QOD1OeRFO8dLxdrLiqZGFNIDqLNeVtpQJmJ6-MmzfTSZkzDnnB6mfPsLfZ9zq3cVXlg4m2f2D692ayDik0HuHKNa3x1H7eKMTs5LAt_JDtPZVZbt6tZcg9KEwQu9gSGyzYT1ETz88-YLZXmctgsh1awDiwPMAkpLaTcH-jHI7O9UwB4-V7wj_cttNzfn5xyV1luVRjZ9sVb43pa-nphuYL9B0BMELqdHWotRq_yXhmKIkHXEVgkhZxTm6K4UcKc0seLzV8kfNW0Yx4JDeU27hgsOGLLfvi7lQb4qkfkUz5x6sf6dRJq1-XExT8slMe_IdHkw3vaBukyQwx61riIQDKS44XMw-p_alrol_11fngc1vPYCBhhgGCIVIIRjRFNMaJmwIoiNLJBlYOTIyCDH2iPrLUwCyEivoLhpXYXA3jHl1MCXBSdRi8bU42EeSx4w6AEGmF-hKyzMsW4pzNG43I6Kff7Ny80ccFsX4yl9yjjAazH4a2IGHVEzuOmFyS8rEKigfmtqMJRDQyypTx69YgKxFk5eKWAKSgb6Tyz157TZc5Z1S1gO2ZoQS-c_Vw2bVNWAjzc120wcXAh8M386f2MUTHE3QK6dhfOdNP35BC0WGIdg7O-Cn_wAYrnWvIy4y_vaa28iqdAbEATFyAwabb9v5Au8IkhcqtS83_rWx_djWXTQ
 
 GET {{Hotelss.API_HostAddress}}/api/hotels
-
+Authorization: Bearer {{token}}
 ###
 
 GET {{Hotelss.API_HostAddress}}/api/hotels/3
@@ -70,7 +71,7 @@ DELETE {{Hotelss.API_HostAddress}}/api/hotel/4/rooms
 
 ###
 
-POST  {{Hotelss.API_HostAddress}}/register
+POST  {{Hotelss.API_HostAddress}}/api/identity/register
 Content-Type: application/json
 
 {
@@ -80,7 +81,7 @@ Content-Type: application/json
 
 ###
 
-POST  {{Hotelss.API_HostAddress}}/login
+POST  {{Hotelss.API_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
