@@ -1,10 +1,10 @@
+using Hotelss.API.Extensions;
 using Hotelss.API.Middlewares;
 using Hotelss.Application.Extensions;
 using Hotelss.Domain.Entities;
 using Hotelss.Infrastructure.Extensions;
 using Hotelss.Infrastructure.Seeders;
 using Serilog;
-using Microsoft.OpenApi.Models;
 
 namespace Hotelss.API;
 
@@ -15,44 +15,14 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-
-        builder.Services.AddControllers();
-
-        //Add Swagger
-        builder.Services.AddSwaggerGen(c =>
-        {
-            c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
-            {
-                Type = SecuritySchemeType.Http,
-                Scheme = "Bearer"
-            });
-
-            c.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference{ Type= ReferenceType.SecurityScheme, Id = "bearerAuth"}
-                    },
-                    []
-                }
-            });
-        });
-
-        builder.Services.AddEndpointsApiExplorer();
-
-        builder.Services.AddScoped<ErrorHandlingMiddleware>();
-        builder.Services.AddScoped<RequesttTimeLoggingMiddleware>();
+        builder.AddPresentation();
+     
 
         //Send configuration to the extension Method for the configuration of the DbContext
         builder.Services.AddApplication();
         builder.Services.AddInfrastructure(builder.Configuration);
 
-        // Serilog
-        builder.Host.UseSerilog((context, configuration) =>
-             configuration.ReadFrom.Configuration(context.Configuration)               
-        ); 
-        
+       
         var app = builder.Build();
 
         //Add the Seeder
