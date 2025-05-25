@@ -26,6 +26,17 @@ public class Program
                 Type = SecuritySchemeType.Http,
                 Scheme = "Bearer"
             });
+
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference{ Type= ReferenceType.SecurityScheme, Id = "bearerAuth"}
+                    },
+                    []
+                }
+            });
         });
 
         builder.Services.AddEndpointsApiExplorer();
@@ -66,7 +77,7 @@ public class Program
 
         app.UseHttpsRedirection();
 
-        app.MapIdentityApi<User>();
+        app.MapGroup("api/identity").MapIdentityApi<User>();
 
         app.UseAuthorization();
           
