@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace Hotelss.Application.User;
+namespace Hotelss.Application.Users;
 
 public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContext
 {

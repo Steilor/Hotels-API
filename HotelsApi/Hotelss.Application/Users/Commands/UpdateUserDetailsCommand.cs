@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Hotelss.Application.User.Commands;
+namespace Hotelss.Application.Users.Commands;
 
 public class UpdateUserDetailsCommand : IRequest
 {

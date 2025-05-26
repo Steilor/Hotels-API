@@ -6,4 +6,10 @@ namespace Hotelss.API.Controllers;
 [Route("api/identity")]
 public class IdentityController
 {
+    [HttpPatch("user")]
+    public async Task<IActionResult> UpdateUserDetails()
+    {
+
+    }
+
 }

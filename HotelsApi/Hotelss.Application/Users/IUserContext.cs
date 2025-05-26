@@ -1,4 +1,4 @@
-﻿namespace Hotelss.Application.User
+﻿namespace Hotelss.Application.Users
 {
     public interface IUserContext
     {
