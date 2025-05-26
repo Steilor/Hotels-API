@@ -20,7 +20,7 @@ namespace Hotelss.Application.Extensions
 
             services.AddScoped<IUserContext, UserContext>();
 
-          
+            services.AddHttpContextAccessor();
 
         }
     }
