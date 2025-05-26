@@ -18,8 +18,10 @@ namespace Hotelss.Application.Extensions
             services.AddValidatorsFromAssembly(applicationAssembly)
                 .AddFluentValidationAutoValidation();
 
-            
-        
+            services.AddScoped<IUserContext, UserContext>();
+
+          
+
         }
     }
 }
