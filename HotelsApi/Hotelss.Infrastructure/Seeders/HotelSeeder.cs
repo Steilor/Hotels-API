@@ -1,5 +1,6 @@
 ﻿using Hotelss.Domain.Entities;
 using Hotelss.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Identity;
 
 namespace Hotelss.Infrastructure.Seeders
 {
@@ -18,6 +19,16 @@ namespace Hotelss.Infrastructure.Seeders
             }
         }
 
+        private IEnumerable<IdentityRole> GetRoles()
+        {
+            List<IdentityRole> roles =
+                [
+                    new ("User"),
+                    new ("Owner"),
+                    new ("Admin"),
+                ];
+               
+        }
         private IEnumerable<Hotel> GetHotels()
         {
             List<Hotel> hotels = [
