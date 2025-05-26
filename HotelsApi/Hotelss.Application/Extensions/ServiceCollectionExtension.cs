@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Hotelss.Application.Hotels;
+using Hotelss.Application.User;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Hotelss.Application.Extensions
@@ -16,6 +17,8 @@ namespace Hotelss.Application.Extensions
 
             services.AddValidatorsFromAssembly(applicationAssembly)
                 .AddFluentValidationAutoValidation();
+
+            
         
         }
     }

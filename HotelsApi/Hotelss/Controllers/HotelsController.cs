@@ -26,6 +26,7 @@ public class HotelsController(IMediator mediator) : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<HotelsDto?>> GetById(int id) 
     {
+        var userId = User.Claims.FirstOrDefault(c => c.Type == "<id clain type>")!.Value;
         var hotel = await mediator.Send(new GetHotelByIdQuery(id));
       
         return Ok(hotel);
