@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
-namespace Hotelss.Application.Users.Commands;
+namespace Hotelss.Application.Users.Commands.UpdateUserDetails;
 
 public class UpdateUserDetailsCommandHanlder(ILogger<UpdateUserDetailsCommandHanlder> logger,
     IUserContext userContext,
