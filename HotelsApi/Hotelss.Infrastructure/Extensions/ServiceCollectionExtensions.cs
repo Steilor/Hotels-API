@@ -3,6 +3,7 @@ using Hotelss.Domain.Repositories;
 using Hotelss.Infrastructure.Persistence;
 using Hotelss.Infrastructure.Repositories;
 using Hotelss.Infrastructure.Seeders;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,7 @@ namespace Hotelss.Infrastructure.Extensions
                     .EnableSensitiveDataLogging());
 
             services.AddIdentityApiEndpoints<User>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<HotelsDbContext>();
 
             services.AddScoped<IHotelSeeder, HotelSeeder>();
