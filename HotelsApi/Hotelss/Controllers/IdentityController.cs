@@ -1,4 +1,5 @@
-﻿using Hotelss.Application.Users.Commands.UpdateUserDetails;
+﻿using Hotelss.Application.Users.Commands.AssignUserRole;
+using Hotelss.Application.Users.Commands.UpdateUserDetails;
 using Hotelss.Domain.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
