@@ -1,4 +1,5 @@
 ﻿using Hotelss.Application.Users.Commands.AssignUserRole;
+using Hotelss.Application.Users.Commands.UnassignUserRole;
 using Hotelss.Application.Users.Commands.UpdateUserDetails;
 using Hotelss.Domain.Constants;
 using MediatR;
@@ -22,6 +23,14 @@ public class IdentityController(IMediator mediator) : ControllerBase
     [HttpPost("userRole")]
     [Authorize(Roles = UserRoles.Admin)]
     public async Task<IActionResult> AssignUserRole (AssignUserRoleCommand command)
+    {
+        await mediator.Send(command);
+        return NoContent();
+    }
+
+    [HttpDelete("userRole")]
+    [Authorize(Roles = UserRoles.Admin)]
+    public async Task<IActionResult> DeleteUserRole(UnassignUserRoleCommand command )
     {
         await mediator.Send(command);
         return NoContent();
