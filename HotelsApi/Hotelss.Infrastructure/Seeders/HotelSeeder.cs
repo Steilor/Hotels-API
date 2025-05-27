@@ -1,4 +1,5 @@
-﻿using Hotelss.Domain.Entities;
+﻿using Hotelss.Domain.Constants;
+using Hotelss.Domain.Entities;
 using Hotelss.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 
@@ -16,18 +17,27 @@ namespace Hotelss.Infrastructure.Seeders
                     dbContext.Hotels.AddRange(hotels);
                     await dbContext.SaveChangesAsync();
                 }
+
+                if (!dbContext.Roles.Any())
+                {
+                    var roles = GetRoles();
+                    dbContext.Roles.AddRange(roles);
+                    await dbContext.SaveChangesAsync();
+                }
             }
+
+           
         }
 
         private IEnumerable<IdentityRole> GetRoles()
         {
             List<IdentityRole> roles =
                 [
-                    new ("User"),
-                    new ("Owner"),
-                    new ("Admin"),
+                    new (UserRoles.User),
+                    new (UserRoles.Owner),
+                    new (UserRoles.Admind),
                 ];
-               
+            return roles;
         }
         private IEnumerable<Hotel> GetHotels()
         {

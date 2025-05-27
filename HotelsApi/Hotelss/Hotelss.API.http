@@ -75,7 +75,7 @@ POST  {{Hotelss.API_HostAddress}}/api/identity/register
 Content-Type: application/json
 
 {
-  "email": "testuser@test.com",
+  "email": "user@test.com",
   "password": "Password1!"
 }
 

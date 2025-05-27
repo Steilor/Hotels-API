@@ -4,6 +4,7 @@ using Hotelss.Application.Hotels.Commands.UpdateHotel;
 using Hotelss.Application.Hotels.Dtos;
 using Hotelss.Application.Hotels.Queries.GetAllHotels;
 using Hotelss.Application.Hotels.Queries.GetHotelById;
+using Hotelss.Domain.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -33,10 +34,10 @@ public class HotelsController(IMediator mediator) : ControllerBase
     }
      
     [HttpPost]
+    [Authorize(Roles = UserRoles.Owner)]
     public async Task<IActionResult> CreateHotel(CreateHotelCommand command)
     {
         int id = await mediator.Send(command);
-
         return CreatedAtAction(nameof(GetById), new {id}, null);
     }
 
