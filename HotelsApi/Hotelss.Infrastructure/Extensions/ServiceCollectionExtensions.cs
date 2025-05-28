@@ -22,6 +22,7 @@ namespace Hotelss.Infrastructure.Extensions
 
             services.AddIdentityApiEndpoints<User>()
                 .AddRoles<IdentityRole>()
+                .AddClaimsPrincipalFactory<HotelsUserClaimsPrincipalFactory>()
                 .AddEntityFrameworkStores<HotelsDbContext>();
 
             services.AddScoped<IHotelSeeder, HotelSeeder>();
