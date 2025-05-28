@@ -1,7 +1,6 @@
-﻿namespace Hotelss.Infrastructure.Authorization
-{
-    internal class HotelsUserClaimsPrincipalFactory
-    {
+﻿namespace Hotelss.Infrastructure.Authorization;
 
-    }
+public class HotelsUserClaimsPrincipalFactory
+{
+
 }
