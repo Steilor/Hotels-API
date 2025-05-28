@@ -1,6 +1,9 @@
-﻿namespace Hotelss.Infrastructure.Authorization;
+﻿using Hotelss.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
-public class HotelsUserClaimsPrincipalFactory
+namespace Hotelss.Infrastructure.Authorization;
+
+public class HotelsUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<User, IdentityRole>
 {
 
 }
