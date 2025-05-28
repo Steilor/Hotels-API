@@ -1,5 +1,6 @@
 ﻿using Hotelss.Domain.Entities;
 using Hotelss.Domain.Repositories;
+using Hotelss.Infrastructure.Authorization;
 using Hotelss.Infrastructure.Persistence;
 using Hotelss.Infrastructure.Repositories;
 using Hotelss.Infrastructure.Seeders;
