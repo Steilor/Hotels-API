@@ -25,6 +25,7 @@ public class HotelsController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize(Policy = "HasNationality")]
     public async Task<ActionResult<HotelsDto?>> GetById(int id) 
     {
         var userId = User.Claims.FirstOrDefault(c => c.Type == "<id clain type>")!.Value;
