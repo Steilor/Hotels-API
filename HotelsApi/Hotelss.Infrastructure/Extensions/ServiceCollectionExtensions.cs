@@ -28,6 +28,9 @@ namespace Hotelss.Infrastructure.Extensions
             services.AddScoped<IHotelSeeder, HotelSeeder>();
             services.AddScoped<IHotelsRepository, HotelsRepository>();
             services.AddScoped<IRoomsRepository, RoomsRepository>();
+
+            services.AddAuthorizationBuilder()
+                .AddPolicy("HasNationality", builder => builder.RequireClaim("Nationality"));
         }
     } 
 }
