@@ -5,6 +5,7 @@ using Hotelss.Application.Hotels.Dtos;
 using Hotelss.Application.Hotels.Queries.GetAllHotels;
 using Hotelss.Application.Hotels.Queries.GetHotelById;
 using Hotelss.Domain.Constants;
+using Hotelss.Infrastructure.Authorization;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,7 @@ public class HotelsController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("{id}")]
-    [Authorize(Policy = "HasNationality")]
+    [Authorize(Policy = PolicyNames.HasNationality)]
     public async Task<ActionResult<HotelsDto?>> GetById(int id) 
     {
         var hotel = await mediator.Send(new GetHotelByIdQuery(id));
