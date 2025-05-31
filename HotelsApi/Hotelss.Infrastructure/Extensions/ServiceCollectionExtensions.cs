@@ -30,7 +30,7 @@ namespace Hotelss.Infrastructure.Extensions
             services.AddScoped<IRoomsRepository, RoomsRepository>();
 
             services.AddAuthorizationBuilder()
-                .AddPolicy("HasNationality", builder => builder.RequireClaim("Nationality"));
+                .AddPolicy("HasNationality", builder => builder.RequireClaim("Nationality", "German", "Polish"));
         }
     } 
 }
