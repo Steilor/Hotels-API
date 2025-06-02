@@ -1,5 +1,5 @@
 ﻿@Hotelss.API_HostAddress = https://localhost:7262
-@token = CfDJ8MWGnpKvu19Pl2aYV_QOD1MPncAQwURm0mYBJcHX9J_NqbEUTkG07UEFvPL3NAJmGRO2Eu23N0jl_U9myWxQx6c2tZhHeswKp67swk6Xf6K9zXnlI4-XCnY9jSY60FYM0asM7U_IpL_5fuV42HSqLScj06QglGZOPD1f30blD6EjqHhA7wZiowl6rNqo32MZOfCDGW127iXiKTqLCwVrgwyvFUNz8zSc4VWQRMrgMq-6AwST61pmjAIDr0l14kgHtm6DSu-hwo05-sF0I7dkGEqpLLtVO-EnfC2AzxRxEJscD9bs9ql3nuiT8f3K4oRXPDnPxWHhSb1y9acBLDKaIMCMj7duBEEFN5lT_BDaC0_YHuDBVuJadxNk1Fs_XLr8XWzj-2ZwMQO2bEqN6prLF61w6BZZuGnzkiCGD-mt3_4yXMkL4-YnlEMiHSj1oa9j_KrI4nt_LeQnIANHnCAi9Ug7CeNAkJ7SfgBNzKqrvL4n0enOxejhR8Nz6nAjwJuRuYRnK0ZmyGlULwc9f_AlFV6ZfYYH0aN3v2ZFToN1Xz7Q9TTMd_ft2TqRmgRTEwLUxo3ct1_bw-VtdEfWzpA65IOQw-qD1f6zujEBAyUGUOVBEWS6zT_M5zeT-2FqZon76QluzNA6yURFTfYicRi5hlo3fPwFMB4ejehbGNcU92cthRcZ5eaVfW6VLVEWCyQbZPYHc2ehEzdTJHjdvzvmKr44LFCPIzVYdHuQ7jQMvbl90kHdbYT3To6IFCv8lCVMcoIayqQikSFhXV9OK0JztVT9gyMdgPGD2ZdC9_ZTPLyreVBSkZ2BiuB8IriU6kLxy1UxpN_C9IapqMnABe1sFc9AOIku2lJ8KdWc5iMCwZtjtO4pGcotil1UpXmVbKXDQg
+@token = CfDJ8MWGnpKvu19Pl2aYV_QOD1OJzaYucpBDZJApWjFQGf9olawbMIoN6AyUJZqgmQp-lxeLjyaK2cPmegZHJKmyVr4lN2fAMgA6k1bu-3dnHwQtMSR_RqYfVi_60Sx2r53Yi1RDJP9zqieu2UKVRbo59VuuegQMc5dReXIEQtJWItHAdESmBwvFrTHsU3_z67ZvJD-NhVDtanbaiakVlVohwIazrG8Ckh_qhSPAj1rLABZ9h8BMFLbiKSNREo7Lz97upZqYyeiLJp8TVQnTF8CNVg8JFKC4fLpMpFX5hBTICQ_CqwRazHhNolT-Szv61arDpMqsnTpbLkSpYihynr0rQRSMHexQiqCd9j9meb014LMaaNV4Axil4fg_SH5HLCYCxQP3Lbu1uaM0bDvLBj0gbrvPQcleJYf1IK8_4rR6omNa5guKDHPozqoGkk1gQFhSmqG88un_GVtwEbZLOiDudhwIZzBYfUPVbrdKYL4gSy5wCG8NFaf3dTpwVrWQn5wpSjKdZ2oTE_iuA2ts68T2KTSoOj_lY06lxmZ2mbD2pYcl7eO8fTC8RlBskyhpQEr-7OGj3fBNEtsCpiD_Vge5Vuy2x6vOZwRFuDRFTrexRbs58xG8zYgriPUgMJBKZ3zD2igplW2Vdz_o45flbv873TkTn5NONA5hbPHkDafNEcZiGYqN7bn3NFC_jKJDGCinwSTvdvAIhHUuXC2IGbdpBDaLEs-KJIn5eMFYaTkFs61FqDocDSehmml_NQ2pJ7DXO6MDBUZv71yXiU9bRr670YLHxHVohYwUiSXjEMc-b4VlaNISHrWcXG2p_5lLrF9YMs4MtRX-OZVWT52LSMLstMRtv9PetOs7rP1rtlkq1APMKPu0_2ZDyILQlYVxO8ZbDA
 GET {{Hotelss.API_HostAddress}}/api/hotels
 //Authorization: Bearer {{token}}
 ###
@@ -17,7 +17,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "Nombre": "Hotel Bubalu Creado Por el Owner",
+  "Nombre": "Owner Hotel",
   "Description": "Hotel 3 estrellas en medio del monte.",
   "Category": "Luxury",
   "IsAvailable": true,
@@ -85,7 +85,7 @@ POST  {{Hotelss.API_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
-  "email": "testuser@test.com",
+  "email": "owner@test.com",
   "password": "Password1!"
 }
 
