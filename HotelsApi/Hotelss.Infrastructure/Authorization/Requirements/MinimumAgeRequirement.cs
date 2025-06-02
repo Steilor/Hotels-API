@@ -4,5 +4,5 @@ namespace Hotelss.Infrastructure.Authorization.Requirements;
 
 public class MinimumAgeRequirement(int minimumAge) : IAuthorizationRequirement
 {
-    public int MinimumAge = minimumAge;
+    public int MinimumAge { get; } = minimumAge;
 }
