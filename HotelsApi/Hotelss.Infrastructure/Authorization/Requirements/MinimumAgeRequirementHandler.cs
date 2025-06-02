@@ -13,6 +13,25 @@ internal class MinimumAgeRequirementHandler(ILogger<MinimumAgeRequirementHandler
         var currentUser = userContext.GetCurrentUser();
         logger.LogInformation("User: {Email}, date of birth {DoB} - Handling MinimumAgeRequirement",
             currentUser.Email, 
-            currentUser.);
+            currentUser.DateOfBirth);
+
+        if(currentUser.DateOfBirth == null)
+        {
+            logger.LogWarning("User date of birth is null");
+            context.Fail();
+            return Task.CompletedTask;
+         
+        }
+        if(currentUser.DateOfBirth.Value.AddYears(requirement.MinimumAge) <= DateOnly.FromDateTime(DateTime.Today))
+        {
+            logger.LogInformation("Authorization succeded");
+            context.Succeed(requirement);
+        }
+        else
+        {
+            context.Fail();
+        }
+
+        return Task.CompletedTask;
     }
 }

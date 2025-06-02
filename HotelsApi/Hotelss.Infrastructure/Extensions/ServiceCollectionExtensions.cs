@@ -1,9 +1,11 @@
 ﻿using Hotelss.Domain.Entities;
 using Hotelss.Domain.Repositories;
 using Hotelss.Infrastructure.Authorization;
+using Hotelss.Infrastructure.Authorization.Requirements;
 using Hotelss.Infrastructure.Persistence;
 using Hotelss.Infrastructure.Repositories;
 using Hotelss.Infrastructure.Seeders;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,7 +34,9 @@ namespace Hotelss.Infrastructure.Extensions
             services.AddAuthorizationBuilder()
                 .AddPolicy(PolicyNames.HasNationality, builder => builder.RequireClaim(AppClaimTypes.Nationality, "German", "Polish"))
                 .AddPolicy(PolicyNames.AtLeast20,
-                     builder => builder.AddRequirements());
+                     builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
+
+            services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
         }
     } 
 }

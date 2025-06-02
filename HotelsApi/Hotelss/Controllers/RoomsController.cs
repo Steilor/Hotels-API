@@ -3,13 +3,16 @@ using Hotelss.Application.Rooms.Commands.DeleteRooms;
 using Hotelss.Application.Rooms.Dtos;
 using Hotelss.Application.Rooms.Queries.GetAllRooms;
 using Hotelss.Application.Rooms.Queries.GetRoomById;
+using Hotelss.Infrastructure.Authorization;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hotelss.API.Controllers;
 
 [Route("api/hotel/{hotelId}/rooms")]
 [ApiController]
+[Authorize]
 public class RoomsController(IMediator mediator) : Controller
 {
     [HttpPost]
@@ -22,6 +25,7 @@ public class RoomsController(IMediator mediator) : Controller
     }
 
     [HttpGet]
+    [Authorize(Policy = PolicyNames.AtLeast20)]
     public async Task<ActionResult<IEnumerable<RoomDto?>>> GetAllForHotell([FromRoute] int hotelId)
     {
         var rooms = await mediator.Send(new GetRoomsForHotelQuery(hotelId));
