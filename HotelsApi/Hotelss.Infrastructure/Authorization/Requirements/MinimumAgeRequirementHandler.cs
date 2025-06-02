@@ -10,7 +10,9 @@ internal class MinimumAgeRequirementHandler(ILogger<MinimumAgeRequirementHandler
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
         MinimumAgeRequirement requirement)
     {
-        var currentUser = context.User;
-        logger.LogInformation("")
+        var currentUser = userContext.GetCurrentUser();
+        logger.LogInformation("User: {Email}, date of birth {DoB} - Handling MinimumAgeRequirement",
+            currentUser.Email, 
+            currentUser.);
     }
 }
