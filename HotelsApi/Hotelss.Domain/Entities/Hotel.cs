@@ -13,5 +13,8 @@
 
         public Address? Address { get; set; }
         public List<Room> Rooms { get; set; } = new();
+
+        public User Owner { get; set; } = default!;
+        public string OwnerId { get; set; } = default!;
     }
 }

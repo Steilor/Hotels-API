@@ -24,6 +24,11 @@ namespace Hotelss.Infrastructure.Persistence
                 .HasMany(r => r.Rooms)
                 .WithOne()
                 .HasForeignKey(d => d.HotelId);
+
+            modelBuilder.Entity<User>()
+                .HasMany(o => o.OwnedHotels)
+                .WithOne(r=> r.Owner)
+                .HasForeignKey(r=> r.OwnerId);  
         }
     }
 } 
