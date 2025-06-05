@@ -1,16 +1,15 @@
 ﻿using Hotelss.Domain.Entities;
 
-namespace Hotelss.Domain.Repositories
+namespace Hotelss.Domain.Repositories;
+
+public interface IHotelsRepository
 {
-    public interface IHotelsRepository
-    {
-        Task<IEnumerable<Hotel>> GetAllAsync();
-        Task<Hotel?> GetByIdAsync(int id);
+    Task<IEnumerable<Hotel>> GetAllAsync();
+    Task<Hotel?> GetByIdAsync(int id);
 
-        Task<int> Create(Hotel hotel);
+    Task<int> Create(Hotel hotel);
 
-        Task Delete(Hotel hotel);
+    Task Delete(Hotel hotel);
 
-        Task SaveChanges();
-    }
+    Task SaveChanges();
 }
