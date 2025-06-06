@@ -1,5 +1,6 @@
 ﻿@Hotelss.API_HostAddress = https://localhost:7262
-@token = CfDJ8MWGnpKvu19Pl2aYV_QOD1OJzaYucpBDZJApWjFQGf9olawbMIoN6AyUJZqgmQp-lxeLjyaK2cPmegZHJKmyVr4lN2fAMgA6k1bu-3dnHwQtMSR_RqYfVi_60Sx2r53Yi1RDJP9zqieu2UKVRbo59VuuegQMc5dReXIEQtJWItHAdESmBwvFrTHsU3_z67ZvJD-NhVDtanbaiakVlVohwIazrG8Ckh_qhSPAj1rLABZ9h8BMFLbiKSNREo7Lz97upZqYyeiLJp8TVQnTF8CNVg8JFKC4fLpMpFX5hBTICQ_CqwRazHhNolT-Szv61arDpMqsnTpbLkSpYihynr0rQRSMHexQiqCd9j9meb014LMaaNV4Axil4fg_SH5HLCYCxQP3Lbu1uaM0bDvLBj0gbrvPQcleJYf1IK8_4rR6omNa5guKDHPozqoGkk1gQFhSmqG88un_GVtwEbZLOiDudhwIZzBYfUPVbrdKYL4gSy5wCG8NFaf3dTpwVrWQn5wpSjKdZ2oTE_iuA2ts68T2KTSoOj_lY06lxmZ2mbD2pYcl7eO8fTC8RlBskyhpQEr-7OGj3fBNEtsCpiD_Vge5Vuy2x6vOZwRFuDRFTrexRbs58xG8zYgriPUgMJBKZ3zD2igplW2Vdz_o45flbv873TkTn5NONA5hbPHkDafNEcZiGYqN7bn3NFC_jKJDGCinwSTvdvAIhHUuXC2IGbdpBDaLEs-KJIn5eMFYaTkFs61FqDocDSehmml_NQ2pJ7DXO6MDBUZv71yXiU9bRr670YLHxHVohYwUiSXjEMc-b4VlaNISHrWcXG2p_5lLrF9YMs4MtRX-OZVWT52LSMLstMRtv9PetOs7rP1rtlkq1APMKPu0_2ZDyILQlYVxO8ZbDA
+@token = CfDJ8MWGnpKvu19Pl2aYV_QOD1PSHDfvHunH78-Mn4HEqNg9gpNhFj1MvniUqgX6nM2K3A0T7IfcDIE5AOaUs_23qR6tJQjUEQmZnUnz1OSa8FdqzeZBubh6vMQOXok1mUAKKyr1SNv-CbORUhwL5rGUgtN_MYIvwfmFPqjSn9O-ZxnkHdrFBlIkNo_Fvum3Y38Ao8L8S8fmU1ov5WA-LPh0hjf4YuS86Dul9V_-URX1riCgUhBxfxXmF82fKcZzRwm6XJu3qk5RMujEWTM9ZYhwVcixXUJMO0fEwGL1SfXWhIlhrsbGbC5wZBwsJYqgmMVVUJCWyNSeV4n8qYRI-lvjwS8VhaHvgvJAWukNLbh0PsCHVGaefXu8NSNm2sqFdjZxV97LJ4Oz4xPYDr7PxNL6ePSCrRVApLWml1Wlx10JoDwiPDLsERxg1OXf5KvKQp3eYUB7GsHctA4IQrCqaNHKN5IA-PnEsviDUYDbKYUEIH_TST15bXMRhEOZ-i9Wonvl-c_TSsJxdjMeXpa8nHAceajlwHiXLCgrMpRd0avORSkgr3m_RJ6PYGTLCDy6GWUEd51h6hi2dZK3yeXh1KM1u8Mt0vYoi8KQ04VJx1Xy7GZOdQgyGtQLjCTqxznV115xnDf_iBdFIYMHI3NrimFj5Ul7lihGQ0obSGG0lv_Xrm3YVkRNbsU6YJ6jpXlxeG7Aws7dG29WOakzug58Ha8A1qoRFZWvOMN-dJloDCUFG46-OpFfTAfs-AEqVno5W4RsVuwEdOikflySsK8DFqW1MoLj5urQiodiz9_Hk1xqfGEAPc8uefzPJDsGR6goLXYIXKj1WWLdSCW0H6HkfE5URmJiWUBkThHnkQWqGp-7USts89M_FyRdY5KumGEPDxmEFA
+
 GET {{Hotelss.API_HostAddress}}/api/hotels
 //Authorization: Bearer {{token}}
 ###
@@ -8,8 +9,8 @@ GET {{Hotelss.API_HostAddress}}/api/hotels/3
 Authorization: Bearer {{token}}
 ###
 
-DELETE {{Hotelss.API_HostAddress}}/api/hotels/5
-
+DELETE {{Hotelss.API_HostAddress}}/api/hotels/10
+Authorization: Bearer {{token}}
 ###
 
 POST  {{Hotelss.API_HostAddress}}/api/hotels
@@ -30,11 +31,11 @@ Content-Type: application/json
 
 ###
 
-PATCH {{Hotelss.API_HostAddress}}/api/hotels/9
+PATCH {{Hotelss.API_HostAddress}}/api/hotels/12
 Content-Type: application/json
-
+Authorization: Bearer {{token}}
 {
-  "Nombre": "Hotel Bubalulu",
+  "Nombre": "Updated name",
   "Description": "Hotel 3000 estrellas en medio del monte.",
   "IsAvailable": true
 }
