@@ -1,4 +1,4 @@
-﻿namespace Hotelss.Infrastructure.Authorization;
+﻿namespace Hotelss.Domain.Constants;
 
 public enum  ResourceOperation
 {

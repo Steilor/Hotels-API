@@ -1,7 +1,9 @@
 ﻿using Hotelss.Domain.Entities;
+using Hotelss.Domain.Interfaces;
 using Hotelss.Domain.Repositories;
 using Hotelss.Infrastructure.Authorization;
 using Hotelss.Infrastructure.Authorization.Requirements;
+using Hotelss.Infrastructure.Authorization.Services;
 using Hotelss.Infrastructure.Persistence;
 using Hotelss.Infrastructure.Repositories;
 using Hotelss.Infrastructure.Seeders;
@@ -37,6 +39,9 @@ namespace Hotelss.Infrastructure.Extensions
                      builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
 
             services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
+            services.AddScoped<IHotelAuthorizationService, HotelAuthorizationService>();
+
+
         }
     } 
 }
