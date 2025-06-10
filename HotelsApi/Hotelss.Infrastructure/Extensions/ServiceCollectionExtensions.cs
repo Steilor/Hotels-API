@@ -36,7 +36,10 @@ namespace Hotelss.Infrastructure.Extensions
             services.AddAuthorizationBuilder()
                 .AddPolicy(PolicyNames.HasNationality, builder => builder.RequireClaim(AppClaimTypes.Nationality, "German", "Polish"))
                 .AddPolicy(PolicyNames.AtLeast20,
-                     builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
+                     builder => builder.AddRequirements(new MinimumAgeRequirement(20)))
+                .AddPolicy(PolicyNames.AtLeast2Hotels,
+                     builder => builder.AddRequirements(new MinimumHotelsRequirement(2)));
+                
 
             services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
             services.AddScoped<IHotelAuthorizationService, HotelAuthorizationService>();
