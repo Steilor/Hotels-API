@@ -1,6 +1,7 @@
 ﻿using Hotelss.Application.Users;
 using Hotelss.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Hotelss.Infrastructure.Authorization.Requirements
@@ -16,8 +17,24 @@ namespace Hotelss.Infrastructure.Authorization.Requirements
             logger.LogInformation("User: {Email} - Handling MinimumHotelsRequirement", 
                 currentUser.Email);
 
-            if(currentUser)
-            var userHotels = dbContext.Hotels.Where(d => d.OwnerId == currentUser.Id);
+            var userHotels =  dbContext.Hotels.Where(d => d.OwnerId == currentUser.Id).ToList();
+
+            if(userHotels == null)
+            {
+                logger.LogWarning("UserHotels null");
+            }
+            if (userHotels.Count() >= 2)
+            {
+                logger.LogInformation("Authorization succeded");
+                context.Succeed(requirement);
+            }
+            else
+            {
+                context.Fail();
+            }
+
+            return Task.CompletedTask;
+                
 
         }
     }
