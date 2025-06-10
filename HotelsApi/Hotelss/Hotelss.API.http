@@ -1,5 +1,6 @@
 ﻿@Hotelss.API_HostAddress = https://localhost:7262
-@token = CfDJ8MWGnpKvu19Pl2aYV_QOD1OkhJQ-8P1yGOeU_jd-gSCjBdfxQP0iv9SXDyrJM5gAQaGgZkxXlCqD6sgBfSwxGymn42EDpbmd7MM7KVhjk-lzr75KPsIWeg7YS6kkH5v3jzEm_aMEQqKuKsGg5iEDEUFBLFBoUbZmZhPsTqRKnsBw76SFfkfoihbGVjKJJUzaovWQklXSGkglD1PoH4sIJzHOO2ymxkep5AxYZl2hWFjaHVPWncDOHhPCIBqdY08f46UBJZ4jU31rAwOeAh0lgrtFjEpN3m26MbrjZDpBZutVvNkriQSUOfaxtPotPk_wesR_B2J2x90h4-W1VEImgnCHE_yQ4SvV8ng5DxjboRfihUVKOQaOOgETzKoeTrc4u47d2vBvnAUB6HgE752viBpQPx_lEQCZh56SRou5hi9eMoiDqfYdbqRVBRuNzna5m3rJ_pu3nWjA2QtS8g6Aq17qSSe-Yp3HkZrneFZG3TXUlpQ5jrrrZmej6G3jREyGnyAwLf9pkigwQ1fDidwpS5tFRCLKjCpDPi7a5MZLgPEK_nSlNwAbE0MCXI2JSi5NvxnqVjfkXaPIZSGLn7gmMXSLHLEiXhazifTRgWUY7m2-vTK6o55wg_pMkkExhZw5-RgPRUP5katzKqnf0lSM5Pz4_Fu0EK4JkeqGykDNrC03bfi3Y0n3isX0LILptu9m2HNaqj4tqgSd9zjWsG5yxzjRHw3xg0VCS2Lk-mmMjP7_4aqLgeDSsCnQZEQ4qLHvn-b82MwwO3FaWQ-odAaLQl26foOT5ays7ufwpUHJCDi_Ko71W57aRXZTtLtLV_viGFYJCT3uBnKk2dTVTalEqVyYyY_6f24Y_vLZDrgu7K-47SWmIiOWuGpSa-ylWHJTiA
+@token = CfDJ8MWGnpKvu19Pl2aYV_QOD1OwZCwIC_Ct9njOVFggGQNc89_-lTsyT0rxIMaTQaP1T8l-qDef2d1felMlh9HBYI7kP-Lj2gPbjeFRdpr0IeYp9hVga1RhjDc8WMHbdN9Q71CHzjckfZxNQK1RAq8maJRsUXRkZ57gQf_QKmY4RN8KU3FBjHeAiq0KELeOVFVBvKwdP9IXhKVY170n7jRj4cFSnhZlK1oJ37ggW5XyeZ_ouHdVDpQApGo9xBU-jQ4WgcuXwr5gj92ElBphazu5Zu8BAJOxk5EywUlKXtHd26BsWolxOWehBPyvvtkgiO_XVweDzvmSyW8HScqvXphNdeUWyh4Qt8vZbDjysvaNbrPgOfjMzyKER7cEO6tuL75UrrJPq2ZmXRHejG8UwRa31pH5y9QD69LfsplzZm-yN2p_EYnO6r4YaF0EwiSt1jgApDWWQ3HerwkKO5DvLLTEpJ1vEBCge6DU7fidzNNKmV3e5aKpe2TydwzAUJ_KGlioJl-9DN0GTL5HALiR46U04Imsra4iW2mcUQg43Vk2wcCzuzPhWyaqDRGGwua_wP0HEWBXhTk2M60c3UBCtew9rtWkEhp6sTjvz68JNhhisrVsZYOLHOSg6yczbRHFo-sNvmJXjkKRhH5CLzGsVbYxVUfJMp-fQHQCuMt0x2HvL0GtKHr2iYQio2NedAobLGMph5FAhGF4BWk4eBlVl7G8Z_LBShnmTR1EywkNb42nXXeUPJShzo-GGQzyBh8lcq2e59Z-Je2DdXTVQmLa8KEWmNN9yn2NkDXGMvIkRwVDPEiO
+
 
 GET {{Hotelss.API_HostAddress}}/api/hotels
 Authorization: Bearer {{token}}
@@ -18,7 +19,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "Nombre": "Owner Hotel",
+  "Nombre": "Owner2 Hotel2",
   "Description": "Hotel 3 estrellas en medio del monte.",
   "Category": "Luxury",
   "IsAvailable": true,
@@ -76,7 +77,7 @@ POST  {{Hotelss.API_HostAddress}}/api/identity/register
 Content-Type: application/json
 
 {
-  "email": "user@test.com",
+  "email": "owner2@test.com",
   "password": "Password1!"
 }
 
@@ -86,7 +87,7 @@ POST  {{Hotelss.API_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
-  "email": "owner@test.com",
+  "email": "owner2@test.com",
   "password": "Password1!"
 }
 
@@ -99,6 +100,16 @@ Authorization: Bearer {{token}}
 {
   "Nationality": "French",
   "DateOfBirth": "2010-01-01"
+}
+
+###
+
+POST {{Hotelss.API_HostAddress}}/api/identity/userRole
+Content-Type: application/json
+Authorization: Bearer {{token}}
+{
+   "UserEmail": "owner2@test.com",
+   "RoleName": "Owner"
 }
 
 ###
