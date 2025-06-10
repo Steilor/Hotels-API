@@ -62,8 +62,7 @@ public class HotelsController(IMediator mediator) : ControllerBase
         await mediator.Send(new DeleteHotelCommand(id));
 
          return NoContent();
-        
-        
+                
     }
     
 
