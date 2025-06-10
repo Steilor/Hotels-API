@@ -38,10 +38,11 @@ namespace Hotelss.Infrastructure.Extensions
                 .AddPolicy(PolicyNames.AtLeast20,
                      builder => builder.AddRequirements(new MinimumAgeRequirement(20)))
                 .AddPolicy(PolicyNames.AtLeast2Hotels,
-                     builder => builder.AddRequirements(new MinimumHotelsRequirement(2)));
+                     builder => builder.AddRequirements(new CreatedMultipleHotelsRequirement(2)));
                 
 
             services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
+            services.AddScoped<IAuthorizationHandler, CreatedMultipleHotelsRequirementHandler>();
             services.AddScoped<IHotelAuthorizationService, HotelAuthorizationService>();
 
 

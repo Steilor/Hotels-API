@@ -1,17 +1,16 @@
 ﻿using Hotelss.Application.Users;
 using Hotelss.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Hotelss.Infrastructure.Authorization.Requirements
 {
-    internal class MinimumHotelsRequirementHandler(ILogger<MinimumHotelsRequirementHandler> logger,
+    internal class CreatedMultipleHotelsRequirementHandler(ILogger<CreatedMultipleHotelsRequirementHandler> logger,
         IUserContext userContext,
-        HotelsDbContext dbContext) : AuthorizationHandler<MinimumHotelsRequirement>
+        HotelsDbContext dbContext) : AuthorizationHandler<CreatedMultipleHotelsRequirement>
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
-            MinimumHotelsRequirement requirement)
+            CreatedMultipleHotelsRequirement requirement)
         {
             var currentUser = userContext.GetCurrentUser();
             logger.LogInformation("User: {Email} - Handling MinimumHotelsRequirement", 
