@@ -37,7 +37,7 @@ namespace Hotelss.Infrastructure.Extensions
                 .AddPolicy(PolicyNames.HasNationality, builder => builder.RequireClaim(AppClaimTypes.Nationality, "German", "Polish"))
                 .AddPolicy(PolicyNames.AtLeast20,
                      builder => builder.AddRequirements(new MinimumAgeRequirement(20)))
-                .AddPolicy(PolicyNames.AtLeast2Hotels,
+                .AddPolicy(PolicyNames.CreatedAtleast2Hotels,
                      builder => builder.AddRequirements(new CreatedMultipleHotelsRequirement(2)));
                 
 

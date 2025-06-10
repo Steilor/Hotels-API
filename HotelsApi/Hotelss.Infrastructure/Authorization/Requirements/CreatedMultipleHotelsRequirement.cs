@@ -2,8 +2,8 @@
 
 namespace Hotelss.Infrastructure.Authorization.Requirements
 {
-    public class CreatedMultipleHotelsRequirement(int minimumHotels) : IAuthorizationRequirement
+    public class CreatedMultipleHotelsRequirement(int minimumHotelsCreated) : IAuthorizationRequirement
     {
-        public int MinimumHotels { get;} = minimumHotels;
+        public int MinimumHotelsCreated { get;} = minimumHotelsCreated;
     }
 }
