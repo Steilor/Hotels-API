@@ -18,9 +18,9 @@ namespace Hotelss.API.Controllers;
 public class HotelsController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
-    //[AllowAnonymous]
-    [Authorize(Policy = PolicyNames.CreatedAtleast2Hotels)]
-    public async Task<ActionResult<IEnumerable<HotelsDto>>> GetHotels()
+    [AllowAnonymous]
+    //[Authorize(Policy = PolicyNames.CreatedAtleast2Hotels)] 
+    public async Task<ActionResult<IEnumerable<HotelsDto>>> GetHotels(GetAllHotelsQuery query)
     {
       var hotels = await mediator.Send(new GetAllHotelsQuery());
       return Ok(hotels);
