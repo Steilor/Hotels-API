@@ -11,8 +11,20 @@ internal class HotelsRepository(HotelsDbContext dbContext) : IHotelsRepository
     {
         var hotels = await dbContext.Hotels.ToListAsync();
         return hotels;
+    } 
+    public async Task<IEnumerable<Hotel>> GetAllMatchingAsync(string? searchPhrase)
+    {
+        var searchPhraseLower = searchPhrase.ToLower();
+
+        var hotels = await dbContext
+            .Hotels
+            .Where(c=> c.Nombre.ToLower().Contains(searchPhrase)
+                    || c.Description.ToLower().Contains(searchPhraseLower))
+            .ToListAsync();
+
+        return hotels;
     }
-    
+
     public async Task<Hotel?> GetByIdAsync(int id)
     {
         var hotel = await dbContext.Hotels

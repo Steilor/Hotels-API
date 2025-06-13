@@ -14,11 +14,7 @@ public class GetAllHotelsQueryHandler (ILogger<GetAllHotelsQueryHandler> logger,
     {
         logger.LogInformation("Getting all the hotels");
         var hotels = await hotelsRepository.GetAllAsync();
-
         var hotelsDtos = mapper.Map<IEnumerable<HotelsDto>>(hotels);
-
-        //var hotelsDtos = hotels.Select(HotelsDto.FromEntity);
-
         return hotelsDtos!;
     }
 }

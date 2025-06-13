@@ -12,4 +12,6 @@ public interface IHotelsRepository
     Task Delete(Hotel hotel);
 
     Task SaveChanges();
+
+    Task<IEnumerable<Hotel>> GetAllMatchingAsync(string? searchPhrase);
 }
