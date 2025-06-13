@@ -13,5 +13,5 @@ public interface IHotelsRepository
 
     Task SaveChanges();
 
-    Task<IEnumerable<Hotel>> GetAllMatchingAsync(string? searchPhrase);
+    Task<IEnumerable<Hotel>> GetAllMatchingAsync(string? searchPhrase, int pageSize, int pageNumber);
 }

@@ -13,7 +13,10 @@ public class GetAllHotelsQueryHandler (ILogger<GetAllHotelsQueryHandler> logger,
     public async Task<IEnumerable<HotelsDto>> Handle(GetAllHotelsQuery request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Getting all the hotels");
-        var hotels = await hotelsRepository.GetAllMatchingAsync(request.SearchPhrase);
+        var hotels = await hotelsRepository.GetAllMatchingAsync(request.SearchPhrase,
+            request.PageSize,
+            request.PageNumber);
+
         var hotelsDtos = mapper.Map<IEnumerable<HotelsDto>>(hotels);
         return hotelsDtos!;
     }

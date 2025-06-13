@@ -12,7 +12,7 @@ internal class HotelsRepository(HotelsDbContext dbContext) : IHotelsRepository
         var hotels = await dbContext.Hotels.ToListAsync();
         return hotels;
     } 
-    public async Task<IEnumerable<Hotel>> GetAllMatchingAsync(string? searchPhrase)
+    public async Task<IEnumerable<Hotel>> GetAllMatchingAsync(string? searchPhrase, int pageSize, int pageNumber)
     {
         var searchPhraseLower = searchPhrase?.ToLower();
 
@@ -20,6 +20,9 @@ internal class HotelsRepository(HotelsDbContext dbContext) : IHotelsRepository
             .Hotels
             .Where(r => searchPhraseLower == null || (r.Nombre.ToLower().Contains(searchPhraseLower)
                     || r.Description.ToLower().Contains(searchPhraseLower)))
+
+            .Skip(pageSize * (pageNumber - 1))
+            .Take(pageSize)
             .ToListAsync();
 
         return hotels;
