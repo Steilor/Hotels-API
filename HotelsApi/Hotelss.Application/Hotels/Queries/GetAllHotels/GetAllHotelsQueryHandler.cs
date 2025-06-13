@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Hotelss.Application.Common;
 using Hotelss.Application.Hotels.Dtos;
 using Hotelss.Domain.Repositories;
 using MediatR;
@@ -8,7 +9,7 @@ namespace Hotelss.Application.Hotels.Queries.GetAllHotels;
 
 public class GetAllHotelsQueryHandler (ILogger<GetAllHotelsQueryHandler> logger,
     IMapper mapper,
-    IHotelsRepository hotelsRepository) : IRequestHandler<GetAllHotelsQuery, IEnumerable<HotelsDto>>
+    IHotelsRepository hotelsRepository) : IRequestHandler<GetAllHotelsQuery, PagedResult<HotelsDto>>
 {
     public async Task<IEnumerable<HotelsDto>> Handle(GetAllHotelsQuery request, CancellationToken cancellationToken)
     {
@@ -18,6 +19,8 @@ public class GetAllHotelsQueryHandler (ILogger<GetAllHotelsQueryHandler> logger,
             request.PageNumber);
 
         var hotelsDtos = mapper.Map<IEnumerable<HotelsDto>>(hotels);
+
+        var results = new PagedResult<HotelsDto>(hotelsDtos, x, request.PageSize, request.PageNumber);
         return hotelsDtos!;
     }
 }

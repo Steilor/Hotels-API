@@ -7,8 +7,8 @@ public class PagedResult<T>
         Items = items;
         TotalItemsCount = totalCount;
         TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize);//math.celing (2.8) => 3
-        ItemsFrom = pageSize * (pageNumber - 1) + 1; // Indice 1 elemento de la page actual
-        ItemsTo = ItemsFrom + pageSize - 1; // Indice Ultimo elemento de la page actual
+        ItemsFrom = pageSize * (pageNumber - 1) + 1; // Indice First elemento de la page actual
+        ItemsTo = ItemsFrom + pageSize - 1; // Indice Last elemento de la page actual
     }
     public List<T> Items { get; set; }
     public int TotalPages { get; set; }

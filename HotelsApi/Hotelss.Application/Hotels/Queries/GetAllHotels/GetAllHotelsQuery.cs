@@ -1,9 +1,10 @@
-﻿using Hotelss.Application.Hotels.Dtos;
+﻿using Hotelss.Application.Common;
+using Hotelss.Application.Hotels.Dtos;
 using MediatR;
 
 namespace Hotelss.Application.Hotels.Queries.GetAllHotels;
 
-public class GetAllHotelsQuery() : IRequest<IEnumerable<HotelsDto>>
+public class GetAllHotelsQuery() : IRequest<PagedResult<HotelsDto>>
 {
     public string? SearchPhrase { get; set; }
     public int PageSize { get; set; }
