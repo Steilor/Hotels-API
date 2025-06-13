@@ -2,7 +2,7 @@
 
 public class PagedResult<T>
 {
-    public PagedResult(List<T> items, int totalCount, int pageSize, int pageNumber)
+    public PagedResult(IEnumerable<T> items, int totalCount, int pageSize, int pageNumber)
     {
         Items = items;
         TotalItemsCount = totalCount;
@@ -10,7 +10,7 @@ public class PagedResult<T>
         ItemsFrom = pageSize * (pageNumber - 1) + 1; // Indice First elemento de la page actual
         ItemsTo = ItemsFrom + pageSize - 1; // Indice Last elemento de la page actual
     }
-    public List<T> Items { get; set; }
+    public IEnumerable<T> Items { get; set; }
     public int TotalPages { get; set; }
     public int TotalItemsCount { get; set; }
     public int ItemsFrom { get; set; }
