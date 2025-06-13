@@ -22,7 +22,7 @@ public class HotelsController(IMediator mediator) : ControllerBase
     //[Authorize(Policy = PolicyNames.CreatedAtleast2Hotels)] 
     public async Task<ActionResult<IEnumerable<HotelsDto>>> GetHotels([FromQuery] GetAllHotelsQuery query)
     {
-      var hotels = await mediator.Send(new GetAllHotelsQuery());
+      var hotels = await mediator.Send(query);
       return Ok(hotels);
     }
 

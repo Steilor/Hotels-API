@@ -14,12 +14,12 @@ internal class HotelsRepository(HotelsDbContext dbContext) : IHotelsRepository
     } 
     public async Task<IEnumerable<Hotel>> GetAllMatchingAsync(string? searchPhrase)
     {
-        var searchPhraseLower = searchPhrase.ToLower();
+        var searchPhraseLower = searchPhrase?.ToLower();
 
         var hotels = await dbContext
             .Hotels
-            .Where(c=> c.Nombre.ToLower().Contains(searchPhrase)
-                    || c.Description.ToLower().Contains(searchPhraseLower))
+            .Where(r => searchPhraseLower == null || (r.Nombre.ToLower().Contains(searchPhraseLower)
+                    || r.Description.ToLower().Contains(searchPhraseLower)))
             .ToListAsync();
 
         return hotels;
