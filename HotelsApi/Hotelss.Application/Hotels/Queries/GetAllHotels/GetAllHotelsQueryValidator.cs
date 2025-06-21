@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
-namespace Hotelss.Application.Hotels.Queries.GetAllHotels
+namespace Hotelss.Application.Hotels.Queries.GetAllHotels;
+
+public class GetAllHotelsQueryValidator : AbstractValidator<GetAllHotelsQuery>
 {
-    internal class GetAllHotelsQueryValidator
+    private int[] allowPageSizes = [5, 10, 15, 30];
+    public GetAllHotelsQueryValidator()
     {
+        RuleFor(dto => dto.PageNumber)
+            .GreaterThanOrEqualTo(1);
+
+        RuleFor(dto => dto.PageSize)
+            .Must(value => allowPageSizes.Contains(value))
+            .WithMessage($"Page size must be in [{string.Join(",", allowPageSizes)}]");
     }
 }
