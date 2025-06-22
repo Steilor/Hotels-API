@@ -17,7 +17,9 @@ public class GetAllHotelsQueryHandler (ILogger<GetAllHotelsQueryHandler> logger,
         logger.LogInformation("Getting all the hotels");
         var (hotels, totalCount) = await hotelsRepository.GetAllMatchingAsync(request.SearchPhrase,
             request.PageSize,
-            request.PageNumber);
+            request.PageNumber,
+            request.SortBy,
+            request.SortDirection);
 
         var hotelsDtos = mapper.Map<IEnumerable<HotelsDto>>(hotels);
 

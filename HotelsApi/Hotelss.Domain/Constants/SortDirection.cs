@@ -1,4 +1,4 @@
-﻿namespace Hotelss.Application.Common
+﻿namespace Hotelss.Domain.Constants
 {
     public enum SortDirection
     {

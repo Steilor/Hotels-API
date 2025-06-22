@@ -1,7 +1,9 @@
-﻿using Hotelss.Domain.Entities;
+﻿using Hotelss.Domain.Constants;
+using Hotelss.Domain.Entities;
 using Hotelss.Domain.Repositories;
 using Hotelss.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Hotelss.Infrastructure.Repositories;
 
@@ -12,7 +14,11 @@ internal class HotelsRepository(HotelsDbContext dbContext) : IHotelsRepository
         var hotels = await dbContext.Hotels.ToListAsync();
         return hotels;
     } 
-    public async Task<(IEnumerable<Hotel>, int)> GetAllMatchingAsync(string? searchPhrase, int pageSize, int pageNumber)
+    public async Task<(IEnumerable<Hotel>, int)> GetAllMatchingAsync(string? searchPhrase, 
+        int pageSize, 
+        int pageNumber,
+        string? sortBy,
+        SortDirection sortDirection)
     {
         var searchPhraseLower = searchPhrase?.ToLower();
 
@@ -22,6 +28,22 @@ internal class HotelsRepository(HotelsDbContext dbContext) : IHotelsRepository
                     || r.Description.ToLower().Contains(searchPhraseLower)));
 
         var totalCount = await baseQuery.CountAsync();
+
+        if(sortBy != null)
+        {
+            var columnsSelector = new Dictionary<string, Expression<Func<Hotel, object>>>
+            {
+                {nameof(Hotel.Nombre), r => r.Nombre },
+                {nameof(Hotel.Description), r => r.Description },
+                {nameof(Hotel.Category), r => r.Category },
+            };
+            
+            var selectedColumn = columnsSelector[sortBy]; 
+
+            baseQuery = sortDirection == SortDirection.Ascending
+                ? baseQuery.OrderBy(selectedColumn)
+                : baseQuery.OrderByDescending(selectedColumn);
+        }
 
         var hotels = await baseQuery
             .Skip(pageSize * (pageNumber - 1))

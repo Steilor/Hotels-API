@@ -1,4 +1,6 @@
-﻿using Hotelss.Domain.Entities;
+﻿using Hotelss.Domain.Constants;
+using Hotelss.Domain.Entities;
+using System.ComponentModel;
 
 namespace Hotelss.Domain.Repositories;
 
@@ -13,5 +15,5 @@ public interface IHotelsRepository
 
     Task SaveChanges();
 
-    Task<(IEnumerable<Hotel>, int)> GetAllMatchingAsync(string? searchPhrase, int pageSize, int pageNumber);
+    Task<(IEnumerable<Hotel>, int)> GetAllMatchingAsync(string? searchPhrase, int pageSize, int pageNumber,string? sortBy, SortDirection sortDirection);
 }

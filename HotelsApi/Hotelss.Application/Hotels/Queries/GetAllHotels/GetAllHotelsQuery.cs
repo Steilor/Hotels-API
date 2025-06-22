@@ -1,5 +1,6 @@
 ﻿using Hotelss.Application.Common;
 using Hotelss.Application.Hotels.Dtos;
+using Hotelss.Domain.Constants;
 using MediatR;
 
 namespace Hotelss.Application.Hotels.Queries.GetAllHotels;

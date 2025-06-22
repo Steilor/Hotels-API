@@ -1,6 +1,4 @@
 ﻿using Hotelss.Application.Rooms.Dtos;
-using Hotelss.Domain.Entities;
-using Hotelss.Domain.Repositories;
 
 namespace Hotelss.Application.Hotels.Dtos
 {

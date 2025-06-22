@@ -20,6 +20,7 @@ public class GetAllHotelsQueryValidator : AbstractValidator<GetAllHotelsQuery>
 
         RuleFor(dto => dto.SortBy)
             .Must(value => allowedSortByColumnNames.Contains(value))
-            .WithMessage($"Page size must be in [{string.Join(",", allowPageSizes)}]");
+            .When(q => q.SortBy != null)
+            .WithMessage($"Sort by is optional, or must be in [{string.Join(",", allowedSortByColumnNames)}]");
     }
 }
