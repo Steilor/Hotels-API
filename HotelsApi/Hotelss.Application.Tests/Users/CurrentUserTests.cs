@@ -13,8 +13,9 @@ public class CurrentUserTests
 
         // act
 
-        currentUser.IsInRole(UserRoles.Admin);
+        var isInRole = currentUser.IsInRole(UserRoles.Admin);
         // assert
 
+        isInRole.Should()
     }
 }
