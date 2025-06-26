@@ -1,4 +1,5 @@
-﻿using Hotelss.Domain.Constants;
+﻿using FluentAssertions;
+using Hotelss.Domain.Constants;
 using Microsoft.AspNetCore.Http;
 using Moq;
 using System.Security.Claims;
@@ -34,8 +35,16 @@ public class UserContextTests
 
         var userContext = new UserContext(httpContextAccessorMock.Object);
         // act
+        var currentUser = userContext.GetCurrentUser();
+
 
         // asset
+        currentUser.Should().NotBeNull();
+        currentUser.Id.Should().Be("1");
+        currentUser.Email.Should().Be("test@test.com");
+        currentUser.Roles.Should().ContainInOrder(UserRoles.Admin, UserRoles.User);
+        currentUser.Nationality.Should().Be("German");
+        currentUser.DateOfBirth.Should().Be(dateOfBirth);
     }
 
 }
