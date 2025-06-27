@@ -47,4 +47,23 @@ public class UserContextTests
         currentUser.DateOfBirth.Should().Be(dateOfBirth);
     }
 
+    [Fact]
+    public void GetCurrentUser_WithUserContextNotPresent_ThrowsInvalidOperationException()
+    {
+        // Arrange
+        var httContextAccessorMock = new Mock<IHttpContextAccessor>();
+        httContextAccessorMock.Setup(x => x.HttpContext).Returns((HttpContext)null);
+
+        var userContext = new UserContext(httContextAccessorMock.Object);
+
+        // act
+
+        Action action = () => userContext.GetCurrentUser();
+
+        // assert
+
+        action.Should()
+            .Throw<InvalidOperationException>()
+            .WithMessage("User context is not present");
+    }
 }
