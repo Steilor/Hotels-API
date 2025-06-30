@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentAssertions;
 using Hotelss.Domain.Entities;
 using Xunit;
 
@@ -34,5 +35,22 @@ public class HotelsProfileTests
                 PostalCode = "12345"
             }
         };
+
+        // act
+
+        var hotelsDto = mapper.Map<HotelsDto>(hotel);
+
+
+        // assert
+
+        hotelsDto.Should().NotBeNull();
+        hotelsDto.Id.Should().Be(hotel.Id);
+        hotelsDto.Nombre.Should().Be(hotel.Nombre);
+        hotelsDto.Description.Should().Be(hotel.Description);
+        hotelsDto.Category.Should().Be(hotel.Category);
+        hotelsDto.IsAvailable.Should().Be(hotel.IsAvailable);
+        hotelsDto.City.Should().Be(hotel.Address.City);
+        hotelsDto.Street.Should().Be(hotel.Address.Street);
+        hotelsDto.PostalCode.Should().Be(hotel.Address.PostalCode);
     }
 }
