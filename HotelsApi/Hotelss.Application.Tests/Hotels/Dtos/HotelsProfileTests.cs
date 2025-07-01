@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentAssertions;
+using Hotelss.Application.Hotels.Commands.CreateHotel;
 using Hotelss.Domain.Entities;
 using Xunit;
 
@@ -52,5 +53,51 @@ public class HotelsProfileTests
         hotelsDto.City.Should().Be(hotel.Address.City);
         hotelsDto.Street.Should().Be(hotel.Address.Street);
         hotelsDto.PostalCode.Should().Be(hotel.Address.PostalCode);
+    }
+
+    [Fact()]
+    public void CreateMap_ForCreateHotelCommandToHotel_MapsCorrectly()
+    {
+        // arrange
+
+        var configuration = new MapperConfiguration(cfg =>
+        {
+            cfg.AddProfile<HotelsProfile>();
+        });
+
+        var mapper = configuration.CreateMapper();
+
+        var command = new CreateHotelCommand
+        {
+            Nombre = "Test Hotel",
+            Description = "Test Description",
+            Category = "test Ccategory",
+            IsAvailable = true,
+            ContactEmail = "test@example.com",
+            ContactNumber = "123456789",
+            City = "Test City",
+            Street = "Test Street",
+            PostalCode = "12345",
+
+        };
+
+        // act
+
+        var hotel = mapper.Map<Hotel>(command);
+
+
+        // assert
+
+        hotel.Should().NotBeNull();
+        hotel.Nombre.Should().Be(command.Nombre);
+        hotel.Description.Should().Be(command.Description);
+        hotel.Category.Should().Be(command.Category);
+        hotel.IsAvailable.Should().Be(hotel.IsAvailable);
+        hotel.ContactEmail.Should().Be(command.ContactEmail);
+        hotel.ContactNumber.Should().Be(command.ContactNumber);
+        hotel.Address.Should().NotBeNull();
+        hotel.Address.City.Should().Be(command.City);
+        hotel.Address.Street.Should().Be(command.Street);
+        hotel.Address.PostalCode.Should().Be(command.PostalCode);
     }
 }
