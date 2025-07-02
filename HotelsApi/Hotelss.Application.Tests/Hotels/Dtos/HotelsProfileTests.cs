@@ -8,6 +8,18 @@ namespace Hotelss.Application.Hotels.Dtos.Tests;
 
 public class HotelsProfileTests
 {
+    private IMapper _mapper;
+
+    public HotelsProfileTests()
+    {
+        var configuration = new MapperConfiguration(cfg =>
+        {
+            cfg.AddProfile<HotelsProfile>();
+        });
+        
+        _mapper = configuration.CreateMapper();
+    }
+
     [Fact()]
     public void CreateMap_ForHotelToHotelsDto_MapsCorrectly()
     { 
