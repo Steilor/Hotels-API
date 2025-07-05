@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using Hotelss.Application.Hotels.Commands.CreateHotel;
+using Hotelss.Application.Hotels.Commands.UpdateHotel;
 using Hotelss.Domain.Entities;
 using Xunit;
 
@@ -25,13 +26,6 @@ public class HotelsProfileTests
     { 
        // arrange
 
-        var configuration = new MapperConfiguration(cfg =>
-        {
-            cfg.AddProfile<HotelsProfile>();
-        });
-
-        var mapper = configuration.CreateMapper();
-
         var hotel = new Hotel()
         {
             Id = 1,
@@ -51,7 +45,7 @@ public class HotelsProfileTests
 
         // act
 
-        var hotelsDto = mapper.Map<HotelsDto>(hotel);
+        var hotelsDto = _mapper.Map<HotelsDto>(hotel);
 
 
         // assert
@@ -72,13 +66,6 @@ public class HotelsProfileTests
     {
         // arrange
 
-        var configuration = new MapperConfiguration(cfg =>
-        {
-            cfg.AddProfile<HotelsProfile>();
-        });
-
-        var mapper = configuration.CreateMapper();
-
         var command = new CreateHotelCommand
         {
             Nombre = "Test Hotel",
@@ -95,7 +82,7 @@ public class HotelsProfileTests
 
         // act
 
-        var hotel = mapper.Map<Hotel>(command);
+        var hotel = _mapper.Map<Hotel>(command);
 
 
         // assert
@@ -111,5 +98,35 @@ public class HotelsProfileTests
         hotel.Address.City.Should().Be(command.City);
         hotel.Address.Street.Should().Be(command.Street);
         hotel.Address.PostalCode.Should().Be(command.PostalCode);
+    }
+
+
+    [Fact()]
+    public void CreateMap_ForUpdateHotelCommandToHotel_MapsCorrectly()
+    {
+        // arrange
+
+        var command = new UpdateHotelCommand
+        {
+            Id = 1,
+            Nombre = "Updated Hotel",
+            Description = "Updated Description",
+            IsAvailable = false,
+         
+        };
+
+        // act
+
+        var hotel = _mapper.Map<Hotel>(command);
+
+
+        // assert
+
+        hotel.Should().NotBeNull();
+        hotel.Id.Should().Be(command.Id);
+        hotel.Nombre.Should().Be(command.Nombre);
+        hotel.Description.Should().Be(command.Description);
+        hotel.IsAvailable.Should().Be(hotel.IsAvailable);
+ 
     }
 }
