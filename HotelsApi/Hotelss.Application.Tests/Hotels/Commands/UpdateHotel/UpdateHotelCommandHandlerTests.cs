@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Hotelss.Domain.Entities;
 using Hotelss.Domain.Interfaces;
 using Hotelss.Domain.Repositories;
 using Microsoft.Extensions.Logging;
@@ -31,11 +32,41 @@ public class UpdateHotelCommandHandlerTests
     }
 
     [Fact()]
-    public void Handle_WithValidRequest_ShouldUpdateHotels()
+    public async void Handle_WithValidRequest_ShouldUpdateHotels()
     {
         // arrange
+        var hotelId = 1;
+        var command = new UpdateHotelCommand()
+        {
+            Id = hotelId,
+            Nombre = "New Test",
+            Description = "New Description",
+            IsAvailable = true,
+        };
+
+        var hotel = new Hotel()
+        {
+            Id = hotelId,
+            Nombre = "Test",
+            Description = "Test",
+        };
+
+        _hotelsRepositoryMock.Setup(r => r.GetByIdAsync(hotelId))
+            .ReturnsAsync(hotel);
+
+        _hotelAuthorizationServiceMock.Setup(m => m.Authorize(hotel, Domain.Constants.ResourceOperation.Update))
+            .Returns(true);
 
 
-        
+        // act
+        await _handler.Handle(command, CancellationToken.None);
+
+        // assert
+
+        _hotelsRepositoryMock.Verify(r => r.SaveChanges(), Times.Once);
+        _mapperMock.Verify(m => m.Map(command, hotel), Times.Once);
+
+
+
     }
 }
