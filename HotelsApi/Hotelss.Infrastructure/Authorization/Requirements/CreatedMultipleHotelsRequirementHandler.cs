@@ -6,15 +6,12 @@ using Microsoft.Extensions.Logging;
 namespace Hotelss.Infrastructure.Authorization.Requirements
 {
     internal class CreatedMultipleHotelsRequirementHandler(IHotelsRepository hotelsRepository,
-        ILogger<CreatedMultipleHotelsRequirementHandler> logger,
         IUserContext userContext ) : AuthorizationHandler<CreatedMultipleHotelsRequirement>
     {
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context,
             CreatedMultipleHotelsRequirement requirement)
         {
             var currentUser = userContext.GetCurrentUser();
-            logger.LogInformation("User: {Email} - Handling MinimumHotelsRequirement", 
-                currentUser.Email);
 
             var hotels = await hotelsRepository.GetAllAsync();
                 
