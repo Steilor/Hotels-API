@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using FluentAssertions;
+using Hotelss.Domain.Constants;
 using Hotelss.Domain.Entities;
+using Hotelss.Domain.Exceptions;
 using Hotelss.Domain.Interfaces;
 using Hotelss.Domain.Repositories;
 using Microsoft.Extensions.Logging;
@@ -32,7 +35,7 @@ public class UpdateHotelCommandHandlerTests
     }
 
     [Fact()]
-    public async void Handle_WithValidRequest_ShouldUpdateHotels()
+    public async Task Handle_WithValidRequest_ShouldUpdateHotels()
     {
         // arrange
         var hotelId = 1;
@@ -66,7 +69,58 @@ public class UpdateHotelCommandHandlerTests
         _hotelsRepositoryMock.Verify(r => r.SaveChanges(), Times.Once);
         _mapperMock.Verify(m => m.Map(command, hotel), Times.Once);
 
+    }
 
+    [Fact]
+    public async Task Handle_WithNonExistingHotel_ShouldThrowNotFoundException()
+    {
+        // Arrange
+        var hotelId = 2;
+        var request = new UpdateHotelCommand
+        {
+            Id = hotelId
+        };
 
+        _hotelsRepositoryMock.Setup(r => r.GetByIdAsync(hotelId))
+                .ReturnsAsync((Hotel?)null);
+
+        // act
+
+        Func<Task> act = async () => await _handler.Handle(request, CancellationToken.None);
+
+        // assert
+        await act.Should().ThrowAsync<NotFoundException>()
+                .WithMessage($"Hotel with id: {hotelId} doesn't exist");
+    }
+
+    [Fact]
+    public async Task Handle_WithUnauthorizedUser_ShouldThrowForbidException()
+    {
+        // / Arrange
+        var hotelId = 3;
+        var request = new UpdateHotelCommand
+        {
+            Id = hotelId
+        };
+
+        var existingHotel = new Hotel
+        {
+            Id = hotelId
+        };
+
+        _hotelsRepositoryMock
+            .Setup(r => r.GetByIdAsync(hotelId))
+                .ReturnsAsync(existingHotel);
+
+        _hotelAuthorizationServiceMock
+            .Setup(a => a.Authorize(existingHotel, ResourceOperation.Update))
+                .Returns(false);
+
+        // act
+
+        Func<Task> act = async () => await _handler.Handle(request, CancellationToken.None);
+
+        // Assert
+        await act.Should().ThrowAsync<ForbidException>();
     }
 }
