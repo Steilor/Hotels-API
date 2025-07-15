@@ -10,6 +10,9 @@
 *.userosscache
 *.sln.docstates
 
+# Ignorar settings de desarrollo que contienen secretos
+src/Hotelss.API/appsettings.Development.json
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
