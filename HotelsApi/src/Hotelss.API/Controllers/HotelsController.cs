@@ -1,6 +1,7 @@
 ﻿using Hotelss.Application.Hotels.Commands.CreateHotel;
 using Hotelss.Application.Hotels.Commands.DeleteHotel;
 using Hotelss.Application.Hotels.Commands.UpdateHotel;
+using Hotelss.Application.Hotels.Commands.UploadHotelLogo;
 using Hotelss.Application.Hotels.Dtos;
 using Hotelss.Application.Hotels.Queries.GetAllHotels;
 using Hotelss.Application.Hotels.Queries.GetHotelById;
@@ -46,7 +47,17 @@ public class HotelsController(IMediator mediator) : ControllerBase
     [HttpPost("{id}/logo")]
     public async Task<IActionResult> UploadLogo([FromRoute]int id, IFormFile file)
     {
-       
+        using var stream = file.OpenReadStream();
+
+       var command = new UploadHotelLogoCommand()
+       {
+            HotelId = id,
+            FileName = file.FileName,
+            File = stream
+       };
+
+        await mediator.Send(command);
+        return NoContent();
     }
 
     [HttpPatch("{id}")]
