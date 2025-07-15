@@ -10,7 +10,8 @@ namespace Hotelss.Application.Hotels.Commands.UploadHotelLogo;
 
 internal class UploadHotelLogoCommandHandler(ILogger<UploadHotelLogoCommandHandler> logger,
     IHotelsRepository hotelsRepository,
-    IHotelAuthorizationService hotelAuthorizationService
+    IHotelAuthorizationService hotelAuthorizationService,
+    IBlobStorageService blobStorageService
     ) : IRequestHandler<UploadHotelLogoCommand>
 {
     public async Task Handle(UploadHotelLogoCommand request, CancellationToken cancellationToken)
@@ -23,6 +24,9 @@ internal class UploadHotelLogoCommandHandler(ILogger<UploadHotelLogoCommandHandl
         if (!hotelAuthorizationService.Authorize(hotel, ResourceOperation.Update))
             throw new ForbidException();
 
-        blobStorageService.UploadToBlobAsync(request.FileName, request.File);
+        var logoUrl = await blobStorageService.UploadToBlobAsync(request.File, request.FileName);
+        hotel.LogoUrl = logoUrl;
+
+        await hotelsRepository.SaveChanges();
     }
 }

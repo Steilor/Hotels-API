@@ -4,9 +4,11 @@ using Hotelss.Domain.Repositories;
 using Hotelss.Infrastructure.Authorization;
 using Hotelss.Infrastructure.Authorization.Requirements;
 using Hotelss.Infrastructure.Authorization.Services;
+using Hotelss.Infrastructure.Configuration;
 using Hotelss.Infrastructure.Persistence;
 using Hotelss.Infrastructure.Repositories;
 using Hotelss.Infrastructure.Seeders;
+using Hotelss.Infrastructure.Storage;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -45,7 +47,8 @@ namespace Hotelss.Infrastructure.Extensions
             services.AddScoped<IAuthorizationHandler, CreatedMultipleHotelsRequirementHandler>();
             services.AddScoped<IHotelAuthorizationService, HotelAuthorizationService>();
 
-
+            services.Configure<BlobStorageSettings>(configuration.GetSection("BlobStorage"));
+            services.AddScoped<IBlobStorageService, BlobStorageService>();
         }
     } 
 }
