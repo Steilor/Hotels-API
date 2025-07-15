@@ -2,6 +2,7 @@
 using Hotelss.Domain.Entities;
 using Hotelss.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hotelss.Infrastructure.Seeders
 {
@@ -9,6 +10,11 @@ namespace Hotelss.Infrastructure.Seeders
     {
         public async Task Seed()
         {
+            if (dbContext.Database.GetPendingMigrations().Any())
+            {
+                await dbContext.Database.MigrateAsync();
+            }
+
             if (await dbContext.Database.CanConnectAsync())
             {
                 if (!dbContext.Hotels.Any())
@@ -51,9 +57,14 @@ namespace Hotelss.Infrastructure.Seeders
         }
         private IEnumerable<Hotel> GetHotels()
         {
+            User owner = new User()
+            {
+                Email = "seed-user@test.com"
+            };
             List<Hotel> hotels = [
                 new()
                 {
+                    Owner = owner,
                     Nombre = "Bella vista",
                     Description = "Lujoso hotel ubicado en la playa.",
                     Category = "5 estrellas",
@@ -89,6 +100,7 @@ namespace Hotelss.Infrastructure.Seeders
                 },
                 new Hotel()
                 {
+                    Owner = owner,
                     Nombre = "Hotel Montaña",
                     Description = "Un acogedor hotel en la sierra.",
                     Category = "4 estrellas",
