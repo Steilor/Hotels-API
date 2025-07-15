@@ -43,6 +43,11 @@ public class HotelsController(IMediator mediator) : ControllerBase
         return CreatedAtAction(nameof(GetById), new {id}, null);
     }
 
+    [HttpPost("{id}/logo")]
+    public async Task<IActionResult> UploadLogo([FromRoute]int id, IFormFile file)
+    {
+       
+    }
 
     [HttpPatch("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
