@@ -28,7 +28,7 @@ public class HotelsController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("{id}")]
-    [Authorize(Policy = PolicyNames.HasNationality)]
+    //[Authorize(Policy = PolicyNames.HasNationality)]
     public async Task<ActionResult<HotelsDto?>> GetById(int id) 
     {
         var hotel = await mediator.Send(new GetHotelByIdQuery(id));
