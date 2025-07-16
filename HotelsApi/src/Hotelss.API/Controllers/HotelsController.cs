@@ -52,8 +52,8 @@ public class HotelsController(IMediator mediator) : ControllerBase
        var command = new UploadHotelLogoCommand()
        {
             HotelId = id,
-            FileName = file.FileName,
-            File = stream
+            FileName = $"{id}-{file.FileName}",
+           File = stream
        };
 
         await mediator.Send(command);
